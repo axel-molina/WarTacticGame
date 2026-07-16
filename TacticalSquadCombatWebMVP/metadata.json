@@ -1,0 +1,6 @@
+{
+  "name": "Tactical Squad Combat MVP",
+  "description": "An interactive 3D/Isometric tactical squad combat prototype with third-person action selection, cover mechanics, and distinct soldier classes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

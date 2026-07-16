@@ -1,0 +1,27 @@
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Godot 4.x specific
+.godot/
+*.translation
+*.tmp
+
+# Node / JS specific
+node_modules/
+dist/
+.env*
+.npm
+.yarn
+
+# Antigravity / Gemini specifics
+.gemini/
+.agy/
+*.log
+*.tmp
+/brain/

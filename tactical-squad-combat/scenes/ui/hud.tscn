@@ -1,0 +1,498 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud_controller.gd" id="1_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Header"]
+bg_color = Color(0.04, 0.06, 0.1, 0.85)
+border_width_bottom = 2
+border_color = Color(0, 0.941, 1, 0.3)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_StatBox"]
+bg_color = Color(0, 0, 0, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.12, 0.16, 0.24, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Console"]
+bg_color = Color(0.04, 0.06, 0.1, 0.9)
+border_width_top = 2
+border_color = Color(0, 0.941, 1, 0.25)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Card"]
+bg_color = Color(0.02, 0.03, 0.05, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.8, 1, 0.2)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_HPBarBG"]
+bg_color = Color(0.15, 0.05, 0.05, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_HPBarFill"]
+bg_color = Color(0.937, 0.247, 0.247, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldBarBG"]
+bg_color = Color(0.05, 0.1, 0.15, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ShieldBarFill"]
+bg_color = Color(0.219, 0.741, 0.972, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ActionButton"]
+bg_color = Color(0.05, 0.09, 0.15, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8, 1, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurnButton"]
+bg_color = Color(0.08, 0.15, 0.2, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.941, 1, 0.5)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUDLayer" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="TopPanel" type="PanelContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Header")
+
+[node name="Margin" type="MarginContainer" parent="HUD/TopPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBox" type="HBoxContainer" parent="HUD/TopPanel/Margin"]
+layout_mode = 2
+
+[node name="RoundBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="RoundPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/RoundBox"]
+custom_minimum_size = Vector2(80, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/RoundBox/RoundPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "RONDA 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostilesPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/RoundBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/RoundBox/HostilesPanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 10
+text = "ENEMIGOS: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="DmgDealt" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgDealt"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgDealt/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "DAÑO INFLIGIDO"
+horizontal_alignment = 1
+
+[node name="Val" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgDealt/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "0 HP"
+horizontal_alignment = 1
+
+[node name="DmgTaken" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgTaken"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgTaken/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "DAÑO RECIBIDO"
+horizontal_alignment = 1
+
+[node name="Val" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/DmgTaken/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "0 HP"
+horizontal_alignment = 1
+
+[node name="Kills" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox/Kills"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/Kills/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "ENEMIGOS ABATIDOS"
+horizontal_alignment = 1
+
+[node name="Val" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/Kills/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.6, 0.1, 1)
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+
+[node name="Accuracy" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox/Accuracy"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/Accuracy/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 8
+text = "PRECISIÓN MEDIA"
+horizontal_alignment = 1
+
+[node name="Val" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/Accuracy/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Sidebar" type="VBoxContainer" parent="HUD"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 95.0
+offset_right = 220.0
+offset_bottom = -215.0
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+
+
+[node name="CommanderPanel" type="PanelContainer" parent="HUD/Sidebar"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_StatBox")
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Sidebar/CommanderPanel"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="HUD/Sidebar/CommanderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 10
+text = "🔷 COMANDANTE"
+
+[node name="Text" type="Label" parent="HUD/Sidebar/CommanderPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.9, 1)
+theme_override_font_sizes/font_size = 9
+text = "Planifica el avance táctico haciendo clic directamente en tu pelotón sobre la cuadrícula."
+autowrap_mode = 3
+
+[node name="TurnBannerPanel" type="PanelContainer" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 85.0
+offset_right = 200.0
+offset_bottom = 125.0
+grow_horizontal = 2
+
+[node name="LabelTurn" type="Label" parent="HUD/TurnBannerPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "TU TURNO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomPanel" type="PanelContainer" parent="HUD"]
+custom_minimum_size = Vector2(0, 195)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_Console")
+
+[node name="HBox" type="HBoxContainer" parent="HUD/BottomPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="InfoPanel" type="PanelContainer" parent="HUD/BottomPanel/HBox"]
+custom_minimum_size = Vector2(300, 160)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="HUD/BottomPanel/HBox/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="HUD/BottomPanel/HBox/InfoPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LabelSoldier" type="Label" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "ASALTO (GUNNAR)"
+
+[node name="LabelClass" type="Label" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.6, 0.7, 1)
+theme_override_font_sizes/font_size = 9
+text = "SOLDADO DE ASALTO          NVL 1"
+
+[node name="LabelHP" type="Label" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 8
+text = "❤️ VIDA: 100/100"
+
+[node name="HPBar" type="ProgressBar" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_HPBarBG")
+theme_override_styles/fill = SubResource("StyleBoxFlat_HPBarFill")
+value = 100.0
+show_percentage = false
+
+[node name="LabelShield" type="Label" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.7, 0.9, 1)
+theme_override_font_sizes/font_size = 8
+text = "🛡️ ESCUDO: 20/20"
+
+[node name="ShieldBar" type="ProgressBar" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ShieldBarBG")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ShieldBarFill")
+value = 50.0
+show_percentage = false
+
+[node name="LabelStats" type="Label" parent="HUD/BottomPanel/HBox/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 10
+text = "AP: ◆ ◆              MUNICIÓN: 6/6"
+
+[node name="ActionPanel" type="PanelContainer" parent="HUD/BottomPanel/HBox"]
+custom_minimum_size = Vector2(350, 160)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="HUD/BottomPanel/HBox/ActionPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="HUD/BottomPanel/HBox/ActionPanel/Margin"]
+layout_mode = 2
+alignment = 1
+
+[node name="Grid" type="GridContainer" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+alignment = 1
+
+[node name="BtnMove" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+text = "»» MOVER
+1 AP"
+
+[node name="BtnShoot" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+text = "🎯 DISPARAR
+1 AP"
+
+[node name="BtnReload" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+text = "🗲 RECARGAR
+1 AP"
+
+[node name="BtnHeal" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+text = "💉 CURAR
+1 AP"
+
+[node name="BtnGrenade" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+text = "💣 GRANADA
+2 AP"
+
+[node name="BtnEndTurn" type="Button" parent="HUD/BottomPanel/HBox/ActionPanel/Margin/VBox/Grid"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_TurnButton")
+text = "🚧 TRINCHERA
+PASIVA"
+
+[node name="LogPanel" type="PanelContainer" parent="HUD/BottomPanel/HBox"]
+custom_minimum_size = Vector2(300, 160)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="HUD/BottomPanel/HBox/LogPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HUD/BottomPanel/HBox/LogPanel/Margin"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 9
+bbcode_enabled = true
+text = "[color=cyan]⚔️ Operación Táctica iniciada. Combate contra escuadrón invasor.[/color]
+"
+scroll_following = true
+
+[node name="ControlPanel" type="VBoxContainer" parent="HUD/BottomPanel/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+
+
+[node name="BtnTurn" type="Button" parent="HUD/BottomPanel/HBox/ControlPanel"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.941, 1, 1)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_TurnButton")
+text = "FINALIZAR TURNO »"

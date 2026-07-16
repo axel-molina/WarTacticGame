@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoldierClassData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/soldiers/soldier_class_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+class_id = "assault"
+class_name_label = "Asalto"
+max_hp = 100
+max_shield = 20
+max_ammo = 6
+accuracy = 75
+base_damage = 15

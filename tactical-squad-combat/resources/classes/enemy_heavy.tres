@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoldierClassData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/soldiers/soldier_class_data.gd" id="1_script"]
+
+[resource]
+script = ExtResource("1_script")
+class_id = "enemy_heavy"
+class_name_label = "Heavy"
+max_hp = 120
+max_shield = 40
+max_ammo = 4
+accuracy = 55
+base_damage = 40
