@@ -77,17 +77,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_MIDDLE:
 			is_dragging = event.pressed
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
-			var use_right_click = SettingsManager.drag_with_right_click
-			if use_right_click:
-				is_dragging = event.pressed
-			else:
-				is_rotating = event.pressed
+			# El click derecho siempre rota la cámara
+			is_rotating = event.pressed
 		elif event.button_index == MOUSE_BUTTON_LEFT:
-			var use_right_click = SettingsManager.drag_with_right_click
-			if use_right_click:
-				is_rotating = event.pressed
-			else:
-				is_dragging = event.pressed
+			# El click izquierdo hace la acción contraria del arrastre táctico
+			is_dragging = event.pressed
 			
 	elif event is InputEventMouseMotion:
 		if is_dragging:
