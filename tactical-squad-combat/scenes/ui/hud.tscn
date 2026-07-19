@@ -129,7 +129,7 @@ layout_mode = 2
 [node name="RoundBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
 [node name="RoundPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/RoundBox"]
 custom_minimum_size = Vector2(80, 36)
