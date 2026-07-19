@@ -198,7 +198,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 60.0
 grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_Header")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ActionPanel")
 
 [node name="Margin" type="MarginContainer" parent="HUD/TopPanel"]
 layout_mode = 2
@@ -243,9 +243,17 @@ text = "HOSTILES ACTIVOS: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
+[node name="StatsBoxContainer" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox"]
 layout_mode = 2
-theme_override_constants/margin_right = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_Header")
+
+[node name="Margin" type="MarginContainer" parent="HUD/TopPanel/Margin/HBox/StatsBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="StatsBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox/StatsBoxContainer/Margin"]
+layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 2
 
