@@ -76,8 +76,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom + zoom_speed * 0.2, min_zoom, max_zoom)
 		elif event.button_index == MOUSE_BUTTON_MIDDLE:
 			is_dragging = event.pressed
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			var use_right_click = SettingsManager.drag_with_right_click if "SettingsManager" in self.get_parent().get_node("root") or true else true
+			if use_right_click:
+				is_dragging = event.pressed
+			else:
+				is_rotating = event.pressed
 		elif event.button_index == MOUSE_BUTTON_LEFT:
-			is_rotating = event.pressed
+			var use_right_click = SettingsManager.drag_with_right_click if "SettingsManager" in self.get_parent().get_node("root") or true else true
+			if use_right_click:
+				is_rotating = event.pressed
+			else:
+				is_dragging = event.pressed
 			
 	elif event is InputEventMouseMotion:
 		if is_dragging:
