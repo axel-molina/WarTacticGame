@@ -45,13 +45,11 @@ func _ready() -> void:
 	btn_save_options.pressed.connect(_on_save_options)
 	slider_music.value_changed.connect(func(val):
 		SettingsManager.music_volume = val
-		var audio_mgr = get_node_or_null("/root/AudioManager")
-		if audio_mgr:
-			audio_mgr.update_volumes()
+		if has_node("/root/AudioManager"):
+			AudioManager.update_volumes()
 	)
 	slider_sfx.value_changed.connect(func(val):
 		SettingsManager.sfx_volume = val
-		# Los SFX futuros usaran este valor al instanciarse
 	)
 	
 	# Hover and Click sounds for all buttons, plus color highlight for main menu options
@@ -62,9 +60,8 @@ func _ready() -> void:
 		if btn:
 			btn.mouse_entered.connect(func():
 				if not btn.disabled:
-					var audio_mgr = get_node_or_null("/root/AudioManager")
-					if audio_mgr:
-						audio_mgr.play_sfx("ui_hover")
+					if has_node("/root/AudioManager"):
+						AudioManager.play_sfx("ui_hover")
 					
 					# Highlight text if it is a main menu option
 					if btn in main_menu_buttons:
@@ -80,9 +77,8 @@ func _ready() -> void:
 			)
 			btn.pressed.connect(func():
 				if not btn.disabled:
-					var audio_mgr = get_node_or_null("/root/AudioManager")
-					if audio_mgr:
-						audio_mgr.play_sfx("ui_click_menu")
+					if has_node("/root/AudioManager"):
+						AudioManager.play_sfx("ui_click_menu")
 			)
 	
 	# Disable buttons not available in MVP
@@ -95,9 +91,8 @@ func _ready() -> void:
 	options_panel.visible = false
 	
 	# Play background music
-	var audio_mgr = get_node_or_null("/root/AudioManager")
-	if audio_mgr:
-		audio_mgr.play_music("menu_theme")
+	if has_node("/root/AudioManager"):
+		AudioManager.play_music("menu_theme")
 
 func _on_new_campaign() -> void:
 	campaign_setup_panel.visible = true
