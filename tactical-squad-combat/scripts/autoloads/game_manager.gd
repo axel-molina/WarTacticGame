@@ -142,7 +142,16 @@ func execute_grenade(thrower: SoldierController, target_pos: Vector2i) -> void:
 	thrower.stats.ap -= 1
 	
 	var grid_manager = get_tree().current_scene.get_node("GridManager") as GridManager
+	var target_world_pos = grid_manager.get_world_position(target_pos)
 	EventBus.combat_log_added.emit("💣 %s lanza una granada frag en (%d, %d)." % [thrower.soldier_name, target_pos.x, target_pos.y], "player_attack")
+	
+	# Focus camera on grenade location
+	var camera = get_tree().current_scene.get_node("TacticalCamera") as TacticalCamera
+	if camera:
+		camera.target_focus = target_world_pos
+		
+	# Play explosion sound 3D
+	AudioManager.play_sfx_3d("grenade_explosion", target_world_pos)
 	
 	# Splash damage in 1-cell radius (Manhattan dist <= 1)
 	var targets_to_damage = []

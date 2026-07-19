@@ -49,6 +49,33 @@ func take_damage(amount: int) -> void:
 	
 	EventBus.combat_log_added.emit("%s recibe %d de daño (%d al escudo, %d a la vida)." % [soldier_name, amount, shield_damage, hp_damage], "damage")
 	
+	# 1. Efecto Visual de Destello Rojo en Body
+	var body = get_node_or_null("Body") as CSGBox3D
+	if body and body.material_override:
+		var orig_mat = body.material_override as StandardMaterial3D
+		if orig_mat:
+			var flash_mat = orig_mat.duplicate() as StandardMaterial3D
+			flash_mat.albedo_color = Color.RED
+			body.material_override = flash_mat
+			get_tree().create_timer(0.15).timeout.connect(func():
+				body.material_override = orig_mat
+			)
+			
+	# 2. Spawnear Texto Flotante de Daño
+	var damage_label = Label3D.new()
+	damage_label.text = "-%d HP" % amount
+	damage_label.billboard = LabeledTextBillboard.BILLBOARD_ENABLED # Billboard 1 en Godot 4 es enabled
+	damage_label.modulate = Color(1.0, 0.2, 0.2) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
+	damage_label.font_size = 28
+	damage_label.outline_size = 8
+	add_child(damage_label)
+	damage_label.global_position = global_position + Vector3(0, 1.8, 0)
+	
+	var tween = create_tween()
+	tween.tween_property(damage_label, "global_position:y", global_position.y + 2.8, 0.6)
+	tween.parallel().tween_property(damage_label, "modulate:a", 0.0, 0.6)
+	tween.tween_callback(damage_label.queue_free)
+	
 	# Update label visually if it exists
 	if label_name:
 		label_name.text = "%s\nHP: %d/%d" % [soldier_name, stats.hp, stats.max_hp]

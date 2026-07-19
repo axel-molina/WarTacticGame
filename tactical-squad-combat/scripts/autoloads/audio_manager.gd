@@ -19,6 +19,7 @@ var streams = {
 	"death_1": preload("res://sounds/death_1.wav"),
 	"death_2": preload("res://sounds/death_2.wav"),
 	"death_3": preload("res://sounds/death_3.wav"),
+	"grenade_explosion": preload("res://sounds/granade_explosion.mp3"),
 }
 
 func _ready() -> void:

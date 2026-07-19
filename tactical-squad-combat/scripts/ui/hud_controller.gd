@@ -162,10 +162,13 @@ func update_hud_display() -> void:
 		btn_heal.visible = (c_id == "medic")
 		btn_grenade.visible = (c_id == "medic" or c_id == "snipers" or c_id == "assault")
 		
-		# Disable/Enable actions based on AP/Ammo
+		# Disable/Enable actions based on AP/Ammo y asegurar visibilidad
 		var has_ap = (selected_soldier.stats.ap > 0)
+		btn_move.visible = true
 		btn_move.disabled = not has_ap
+		btn_shoot.visible = true
 		btn_shoot.disabled = not has_ap or (selected_soldier.stats.ammo <= 0)
+		btn_reload.visible = true
 		btn_reload.disabled = not has_ap or (selected_soldier.stats.ammo == selected_soldier.stats.max_ammo)
 		btn_heal.disabled = not has_ap
 		btn_grenade.disabled = not has_ap
