@@ -49,6 +49,8 @@ func _ready() -> void:
 	)
 	slider_sfx.value_changed.connect(func(val):
 		SettingsManager.sfx_volume = val
+		# Reproducir sonido corto de feedback para que el jugador escuche el nuevo volumen
+		AudioManager.play_sfx("ui_hover")
 	)
 	
 	# Hover and Click sounds for all buttons, plus color highlight for main menu options
@@ -101,10 +103,14 @@ func _on_options_pressed() -> void:
 	check_fullscreen.button_pressed = SettingsManager.fullscreen
 	check_right_drag.button_pressed = SettingsManager.drag_with_right_click
 	
-	if SettingsManager.resolution == Vector2i(1280, 720):
+	# Asegurar que el selector de resolucion marque la resolucion cargada en disco
+	if SettingsManager.resolution.x == 1280 and SettingsManager.resolution.y == 720:
 		opt_resolution.selected = 0
-	elif SettingsManager.resolution == Vector2i(1920, 1080):
+	elif SettingsManager.resolution.x == 1920 and SettingsManager.resolution.y == 1080:
 		opt_resolution.selected = 1
+	else:
+		# Si es otra resolucion nativa, no forzar item incorrecto
+		opt_resolution.selected = -1
 		
 	options_panel.visible = true
 	campaign_setup_panel.visible = false
@@ -114,6 +120,7 @@ func _on_save_options() -> void:
 	SettingsManager.fullscreen = check_fullscreen.button_pressed
 	SettingsManager.drag_with_right_click = check_right_drag.button_pressed
 	
+	# Guardar resolucion solo si el selector tiene un indice valido asignado
 	if opt_resolution.selected == 0:
 		SettingsManager.resolution = Vector2i(1280, 720)
 	elif opt_resolution.selected == 1:

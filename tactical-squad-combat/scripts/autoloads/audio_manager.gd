@@ -40,9 +40,7 @@ func play_music(music_key: String) -> void:
 	if _music_player.playing and _music_player.stream == streams[music_key]:
 		return
 	_music_player.stream = streams[music_key]
-	# Adjust volume based on SettingsManager if it exists
-	var vol_linear = SettingsManager.music_volume if "SettingsManager" in self.get_parent() else 0.8
-	_music_player.volume_db = linear_to_db(vol_linear)
+	_music_player.volume_db = linear_to_db(SettingsManager.music_volume)
 	_music_player.play()
 
 func stop_music() -> void:
@@ -62,8 +60,7 @@ func play_sfx(sfx_key: String) -> void:
 		player = _sfx_players[0] # Overwrite first one if all busy
 		
 	player.stream = streams[sfx_key]
-	var vol_linear = SettingsManager.sfx_volume if "SettingsManager" in self.get_parent() else 0.8
-	player.volume_db = linear_to_db(vol_linear)
+	player.volume_db = linear_to_db(SettingsManager.sfx_volume)
 	player.play()
 
 # Plays a 3D sound at a specific position (returns node so it can be managed)
@@ -74,8 +71,7 @@ func play_sfx_3d(sfx_key: String, global_pos: Vector3) -> AudioStreamPlayer3D:
 	var player3d = AudioStreamPlayer3D.new()
 	player3d.stream = streams[sfx_key]
 	player3d.bus = "SFX"
-	var vol_linear = SettingsManager.sfx_volume if "SettingsManager" in self.get_parent() else 0.8
-	player3d.volume_db = linear_to_db(vol_linear)
+	player3d.volume_db = linear_to_db(SettingsManager.sfx_volume)
 	
 	# Add to root scene so it positions correctly
 	get_tree().current_scene.add_child(player3d)
@@ -89,7 +85,6 @@ func play_sfx_3d(sfx_key: String, global_pos: Vector3) -> AudioStreamPlayer3D:
 # Updates volumes dynamically when options change
 func update_volumes() -> void:
 	if _music_player and _music_player.playing:
-		var vol_linear = SettingsManager.music_volume if "SettingsManager" in self.get_parent() else 0.8
-		_music_player.volume_db = linear_to_db(vol_linear)
+		_music_player.volume_db = linear_to_db(SettingsManager.music_volume)
 	
 	# We can't update active 2D SFX without tracking, but future ones will load new volume
