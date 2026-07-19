@@ -180,16 +180,12 @@ func update_hud_display() -> void:
 		btn_reload.visible = true
 		btn_reload.disabled = not has_ap or (selected_soldier.stats.ammo == selected_soldier.stats.max_ammo)
 		btn_heal.disabled = not has_ap
-		btn_grenade.disabled = not has_ap
+		
+		# La granada cuesta 2 AP, por lo que requiere al menos 2 AP
+		btn_grenade.disabled = (selected_soldier.stats.ap < 2)
 	else:
 		panel_info.visible = false
-		panel_actions.visible = is_player_turn # show end turn even with no unit selected
-		if panel_actions.visible:
-			btn_move.visible = false
-			btn_shoot.visible = false
-			btn_reload.visible = false
-			btn_heal.visible = false
-			btn_grenade.visible = false
+		panel_actions.visible = false # Ocultar completamente el panel de acciones si no hay soldado seleccionado
 			
 	if btn_turn:
 		btn_turn.disabled = not is_player_turn
