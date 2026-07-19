@@ -1,0 +1,692 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/menu_controller.gd" id="1_controller"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_normal"]
+bg_color = Color(0.012, 0.098, 0.161, 0.9)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_hover"]
+bg_color = Color(0.008, 0.047, 0.078, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.941, 1, 0.6)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_pressed"]
+bg_color = Color(0.008, 0.047, 0.078, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.941, 1, 0.8)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_disabled"]
+bg_color = Color(0.012, 0.098, 0.161, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
+bg_color = Color(0.035, 0.067, 0.11, 1.0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_dark"]
+bg_color = Color(0.02, 0.06, 0.1, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.941, 1, 0.3)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_btn_normal"]
+bg_color = Color(0.012, 0.098, 0.161, 0.7)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_btn_hover"]
+bg_color = Color(0.008, 0.047, 0.078, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.941, 1, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="MenuScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_controller")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.04, 0.08, 1)
+
+[node name="TitlePanel" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.5
+anchor_bottom = 0.15
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+
+[node name="HBox" type="HBoxContainer" parent="TitlePanel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelIcon" type="Label" parent="TitlePanel/HBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "⚔️"
+
+[node name="VBox" type="VBoxContainer" parent="TitlePanel/HBox"]
+layout_mode = 2
+
+[node name="LabelTitle" type="Label" parent="TitlePanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "TACTICAL SQUAD
+COMBAT MVP"
+
+[node name="LabelSubtitle" type="Label" parent="TitlePanel/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.9, 0.7)
+theme_override_font_sizes/font_size = 9
+text = "SISTEMA DE PRUEBA DE MECÁNICA — VERSIÓN MVP"
+
+[node name="MenuContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.4
+anchor_bottom = 0.85
+theme_override_constants/separation = 8
+
+[node name="BtnNewCampaign" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnNewCampaign"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "🎖️"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "NUEVA CAMPAÑA"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Inicia una nueva operación táctica"
+
+[node name="BtnLoadGame" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnLoadGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnLoadGame/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "💾"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "CARGAR PARTIDA"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Continúa una operación guardada"
+
+[node name="BtnSkirmish" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnSkirmish"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnSkirmish/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "⚔️"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "ESCARAMUZA"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Batalla rápida con configuración por defecto"
+
+[node name="BtnCustomize" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCustomize"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCustomize/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "🎨"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "PERSONALIZAR"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Personaliza tu escuadrón"
+
+[node name="BtnOptions" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnOptions/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "⚙️"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "OPCIONES"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Ajustes de video, audio y controles"
+
+[node name="BtnCredits" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCredits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCredits/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "📜"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "CRÉDITOS"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Equipo de desarrollo"
+
+[node name="BtnQuit" type="Button" parent="MenuContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
+
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnQuit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 16
+
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnQuit/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
+
+[node name="Icon" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/IconBox"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "🚪"
+
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "SALIR"
+
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 9
+text = "Cerrar el juego"
+
+[node name="CampaignSetupPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.8
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
+
+[node name="Margin" type="MarginContainer" parent="CampaignSetupPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="CampaignSetupPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelTitle" type="Label" parent="CampaignSetupPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.941, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "CONFIGURACIÓN DE CAMPAÑA"
+
+[node name="LabelDiff" type="Label" parent="CampaignSetupPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 10
+text = "Dificultad: Normal
+Escuadrón: 3 soldados (Asalto, Francotirador, Médico)
+Mapa: Zona Urbana 12x12"
+
+[node name="BtnStartOperation" type="Button" parent="CampaignSetupPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+text = "▶ INICIAR OPERACIÓN"
+
+[node name="BtnCancelSetup" type="Button" parent="CampaignSetupPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+text = "✕ CANCELAR"
+
+[node name="OptionsPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.2
+anchor_right = 0.95
+anchor_bottom = 0.8
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
+
+[node name="Margin" type="MarginContainer" parent="OptionsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="OptionsPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelTitle" type="Label" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.941, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "OPCIONES"
+
+[node name="HBoxMusic" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="LabelMusic" type="Label" parent="OptionsPanel/Margin/VBox/HBoxMusic"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+text = "Volumen Música"
+
+[node name="SliderMusic" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxMusic"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="HBoxSFX" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="LabelSFX" type="Label" parent="OptionsPanel/Margin/VBox/HBoxSFX"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+text = "Volumen SFX"
+
+[node name="SliderSFX" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxSFX"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 1.0
+step = 0.05
+value = 0.8
+
+[node name="CheckFullscreen" type="CheckBox" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+text = "Pantalla Completa"
+
+[node name="HBoxRes" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="LabelRes" type="Label" parent="OptionsPanel/Margin/VBox/HBoxRes"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+text = "Resolución"
+
+[node name="OptResolution" type="OptionButton" parent="OptionsPanel/Margin/VBox/HBoxRes"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 2
+popup/item_0/text = "1280 x 720"
+popup/item_1/text = "1920 x 1080"
+popup/item_1/id = 1
+
+[node name="CheckRightDrag" type="CheckBox" parent="OptionsPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+button_pressed = true
+text = "Arrastrar Cámara con Click Derecho"
+
+[node name="BtnSaveOptions" type="Button" parent="OptionsPanel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
+text = "💾 GUARDAR OPCIONES"
+
+[node name="BottomRightButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.97
+theme_override_constants/separation = 8
+
+[node name="BtnDiscord" type="Button" parent="BottomRightButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
+text = "💬 Discord"
+
+[node name="BtnManual" type="Button" parent="BottomRightButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
+text = "📖 Manual"
+
+[node name="BtnNoticias" type="Button" parent="BottomRightButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
+text = "📰 Noticias"
