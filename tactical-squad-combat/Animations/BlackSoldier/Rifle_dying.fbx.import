@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://be7q82we4rgmb"
-path="res://.godot/imported/Rifle_dying.fbx-381ef7417a966b7e40c5f3c0870c4e89.scn"
+path="res://.godot/imported/Rifle_dying.fbx-86da4a2f7264d30265011e9652652ab8.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Rifle_dying.fbx"
-dest_files=["res://.godot/imported/Rifle_dying.fbx-381ef7417a966b7e40c5f3c0870c4e89.scn"]
+source_file="res://animations/BlackSoldier/Rifle_dying.fbx"
+dest_files=["res://.godot/imported/Rifle_dying.fbx-86da4a2f7264d30265011e9652652ab8.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7wgw1yk5bqno"
-path.s3tc="res://.godot/imported/Firing_Rifle_0.png-c25c6a1e73ba480a08fe333f56e8ef60.s3tc.ctex"
+path.s3tc="res://.godot/imported/Firing_Rifle_0.png-18b7cdf4024fc35c2dd9d14010b8d0de.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Firing_Rifle_0.png"
-dest_files=["res://.godot/imported/Firing_Rifle_0.png-c25c6a1e73ba480a08fe333f56e8ef60.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Firing_Rifle_0.png"
+dest_files=["res://.godot/imported/Firing_Rifle_0.png-18b7cdf4024fc35c2dd9d14010b8d0de.s3tc.ctex"]
 
 [params]
 

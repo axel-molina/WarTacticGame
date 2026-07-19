@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dky0apmlg0nfm"
-path="res://.godot/imported/Hit_Reaction.fbx-93ef14a33b49f38995b4efff0344ff73.scn"
+path="res://.godot/imported/Hit_Reaction.fbx-90488d8df2ad190f1c6a7a92dd79f829.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Hit_Reaction.fbx"
-dest_files=["res://.godot/imported/Hit_Reaction.fbx-93ef14a33b49f38995b4efff0344ff73.scn"]
+source_file="res://animations/BlackSoldier/Hit_Reaction.fbx"
+dest_files=["res://.godot/imported/Hit_Reaction.fbx-90488d8df2ad190f1c6a7a92dd79f829.scn"]
 
 [params]
 

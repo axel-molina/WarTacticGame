@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://mnyvio52yvyi"
-path="res://.godot/imported/Toss_Grenade.fbx-4bb6b2a5d3f56951b74eac22694c11f9.scn"
+path="res://.godot/imported/Toss_Grenade.fbx-d5d7dd075c283cf02a82c17ba844e616.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Toss_Grenade.fbx"
-dest_files=["res://.godot/imported/Toss_Grenade.fbx-4bb6b2a5d3f56951b74eac22694c11f9.scn"]
+source_file="res://animations/BlackSoldier/Toss_Grenade.fbx"
+dest_files=["res://.godot/imported/Toss_Grenade.fbx-d5d7dd075c283cf02a82c17ba844e616.scn"]
 
 [params]
 

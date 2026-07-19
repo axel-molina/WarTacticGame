@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://be5oxb8t20tjg"
-path="res://.godot/imported/Rifle_Idle.fbx-2ddd0e96c6615c5105597b3641ce9fe4.scn"
+path="res://.godot/imported/Rifle_Idle.fbx-24861a59f61a64faba3e17da301845ab.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Rifle_Idle.fbx"
-dest_files=["res://.godot/imported/Rifle_Idle.fbx-2ddd0e96c6615c5105597b3641ce9fe4.scn"]
+source_file="res://animations/BlackSoldier/Rifle_Idle.fbx"
+dest_files=["res://.godot/imported/Rifle_Idle.fbx-24861a59f61a64faba3e17da301845ab.scn"]
 
 [params]
 

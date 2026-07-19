@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ccqfcghu2lwm5"
-path="res://.godot/imported/Dying.fbx-286eca495ffaf15f6c856511a782e0e5.scn"
+path="res://.godot/imported/Dying.fbx-6ca757902a3921f21f8d60527617285c.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Dying.fbx"
-dest_files=["res://.godot/imported/Dying.fbx-286eca495ffaf15f6c856511a782e0e5.scn"]
+source_file="res://animations/BlackSoldier/Dying.fbx"
+dest_files=["res://.godot/imported/Dying.fbx-6ca757902a3921f21f8d60527617285c.scn"]
 
 [params]
 

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blhjkrqbpd12q"
-path.s3tc="res://.godot/imported/Rifle_dying_0.png-b2fef4cd3480c7cb1978088b04de1fb0.s3tc.ctex"
+path.s3tc="res://.godot/imported/Rifle_dying_0.png-895cab12f97f4af5eeb9f086e818f467.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Rifle_dying_0.png"
-dest_files=["res://.godot/imported/Rifle_dying_0.png-b2fef4cd3480c7cb1978088b04de1fb0.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Rifle_dying_0.png"
+dest_files=["res://.godot/imported/Rifle_dying_0.png-895cab12f97f4af5eeb9f086e818f467.s3tc.ctex"]
 
 [params]
 

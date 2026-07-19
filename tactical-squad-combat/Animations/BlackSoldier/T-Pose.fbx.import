@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://br0i0llvr38d0"
-path="res://.godot/imported/T-Pose.fbx-6b2dd8f341a7dd98e4c5f96365622a86.scn"
+path="res://.godot/imported/T-Pose.fbx-41b22dbe9ca78dc11042276f3a9def82.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/T-Pose.fbx"
-dest_files=["res://.godot/imported/T-Pose.fbx-6b2dd8f341a7dd98e4c5f96365622a86.scn"]
+source_file="res://animations/BlackSoldier/T-Pose.fbx"
+dest_files=["res://.godot/imported/T-Pose.fbx-41b22dbe9ca78dc11042276f3a9def82.scn"]
 
 [params]
 

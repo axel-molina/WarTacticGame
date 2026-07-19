@@ -201,29 +201,13 @@ func end_turn() -> void:
 				break
 
 func execute_enemy_turns() -> void:
-	# Simple direct AI execution for Hito 2
+	var grid_manager = get_tree().current_scene.get_node("GridManager") as GridManager
+	# Execute tactical AI for each alive enemy
 	for enemy in all_soldiers:
 		if is_instance_valid(enemy) and enemy.is_enemy and enemy.stats.hp > 0:
-			# Find closest player
-			var closest_player = null
-			var min_dist = 999
-			for player in all_soldiers:
-				if is_instance_valid(player) and not player.is_enemy and player.stats.hp > 0:
-					var dist = CombatCalculator.get_distance(enemy.grid_position, player.grid_position)
-					if dist < min_dist:
-						min_dist = dist
-						closest_player = player
-						
-			if closest_player:
-				if enemy.stats.ammo <= 0:
-					enemy.stats.ammo = enemy.stats.max_ammo
-					EventBus.combat_log_added.emit("🤖 %s recarga su arma." % [enemy.soldier_name], "info")
-				else:
-					execute_shoot(enemy, closest_player)
-				# Spend remaining AP
-				enemy.stats.ap = 0
-				await get_tree().create_timer(1.0).timeout
-				
+			enemy.stats.ap = enemy.stats.max_ap # Reset enemy AP at start of their action phase
+			await EnemyAIController.execute_enemy_action(enemy, grid_manager)
+			
 	# Return turn to player
 	end_turn()
 

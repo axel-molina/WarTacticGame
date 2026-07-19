@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bf3j4vut2nyrj"
-path.s3tc="res://.godot/imported/Rifle_Run_0.png-0aefdf1a78aa0b926d57355d828d9704.s3tc.ctex"
+path.s3tc="res://.godot/imported/Rifle_Run_0.png-7f21ebd493fd0282e6988623c655853a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Rifle_Run_0.png"
-dest_files=["res://.godot/imported/Rifle_Run_0.png-0aefdf1a78aa0b926d57355d828d9704.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Rifle_Run_0.png"
+dest_files=["res://.godot/imported/Rifle_Run_0.png-7f21ebd493fd0282e6988623c655853a.s3tc.ctex"]
 
 [params]
 

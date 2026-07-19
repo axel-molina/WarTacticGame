@@ -145,12 +145,12 @@ func get_reachable_cells(soldier: SoldierController) -> Array[Vector2i]:
 			reachable.append(target_pos)
 	return reachable
 
-func highlight_reachable_cells(reachable: Array[Vector2i]) -> void:
+func highlight_reachable_cells(reachable: Array[Vector2i], color_type: String = "cyan") -> void:
 	clear_highlights()
 	for pos in reachable:
 		var cell = get_cell(pos)
 		if cell:
-			cell.set_highlight(true)
+			cell.set_highlight(true, color_type)
 
 func clear_highlights() -> void:
 	for cell in cells_dict.values():

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlegmtgw1q4j8"
-path.s3tc="res://.godot/imported/Rifle_Idle_0.png-071cf0dbd10e8cfb166fd2b1047c82ce.s3tc.ctex"
+path.s3tc="res://.godot/imported/Rifle_Idle_0.png-1b421e97406e62045c05b9e4dd89c511.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Rifle_Idle_0.png"
-dest_files=["res://.godot/imported/Rifle_Idle_0.png-071cf0dbd10e8cfb166fd2b1047c82ce.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Rifle_Idle_0.png"
+dest_files=["res://.godot/imported/Rifle_Idle_0.png-1b421e97406e62045c05b9e4dd89c511.s3tc.ctex"]
 
 [params]
 

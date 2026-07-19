@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfwd8qbgf10y2"
-path.s3tc="res://.godot/imported/Hit_Reaction_0.png-6b637dd2cdd78d3baf5f41eb98260fbf.s3tc.ctex"
+path.s3tc="res://.godot/imported/Hit_Reaction_0.png-b1fa776a9444dd680f0006277aad200d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Hit_Reaction_0.png"
-dest_files=["res://.godot/imported/Hit_Reaction_0.png-6b637dd2cdd78d3baf5f41eb98260fbf.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Hit_Reaction_0.png"
+dest_files=["res://.godot/imported/Hit_Reaction_0.png-b1fa776a9444dd680f0006277aad200d.s3tc.ctex"]
 
 [params]
 

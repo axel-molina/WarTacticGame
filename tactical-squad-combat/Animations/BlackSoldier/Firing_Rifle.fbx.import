@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dplnkb3jt3nn3"
-path="res://.godot/imported/Firing_Rifle.fbx-fa3c7dc31be10cfebb38eecf29f8d5f9.scn"
+path="res://.godot/imported/Firing_Rifle.fbx-f1910fc11a3bd38256af920d9e5459f4.scn"
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Firing_Rifle.fbx"
-dest_files=["res://.godot/imported/Firing_Rifle.fbx-fa3c7dc31be10cfebb38eecf29f8d5f9.scn"]
+source_file="res://animations/BlackSoldier/Firing_Rifle.fbx"
+dest_files=["res://.godot/imported/Firing_Rifle.fbx-f1910fc11a3bd38256af920d9e5459f4.scn"]
 
 [params]
 

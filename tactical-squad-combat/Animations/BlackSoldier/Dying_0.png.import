@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1iy27b1aifpe"
-path.s3tc="res://.godot/imported/Dying_0.png-879c2a56489819426cd61e6ce28efc33.s3tc.ctex"
+path.s3tc="res://.godot/imported/Dying_0.png-8c9b5fb8e56757b2f2198a832a0d59ad.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Animations/BlackSoldier/Dying_0.png"
-dest_files=["res://.godot/imported/Dying_0.png-879c2a56489819426cd61e6ce28efc33.s3tc.ctex"]
+source_file="res://animations/BlackSoldier/Dying_0.png"
+dest_files=["res://.godot/imported/Dying_0.png-8c9b5fb8e56757b2f2198a832a0d59ad.s3tc.ctex"]
 
 [params]
 

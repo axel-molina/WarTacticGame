@@ -40,9 +40,19 @@ func setup(data: GridCellData) -> void:
 		mesh.position.y = -0.05
 
 
-func set_highlight(value: bool) -> void:
+func set_highlight(value: bool, color_type: String = "cyan") -> void:
 	if highlight_border:
 		highlight_border.visible = value
+		if value:
+			var mat = highlight_border.material_override as StandardMaterial3D
+			if mat:
+				# Duplicar el material para no afectar a todas las celdas simultaneamente
+				var dup_mat = mat.duplicate() as StandardMaterial3D
+				if color_type == "red":
+					dup_mat.albedo_color = Color(1.0, 0.1, 0.1, 0.45) # Rojo traslucido para combate
+				else:
+					dup_mat.albedo_color = Color(0.0, 0.8, 1.0, 0.4)  # Celeste original para movimiento
+				highlight_border.material_override = dup_mat
 
 func _on_mouse_entered() -> void:
 	if hover_border:

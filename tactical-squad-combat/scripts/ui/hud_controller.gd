@@ -202,6 +202,12 @@ func _on_btn_shoot_pressed() -> void:
 	var grid_manager = get_tree().current_scene.get_node("GridManager") as GridManager
 	if grid_manager:
 		grid_manager.clear_highlights()
+		# Resaltar en rojo las celdas de los enemigos vivos
+		var enemy_cells: Array[Vector2i] = []
+		for s in GameManager.all_soldiers:
+			if is_instance_valid(s) and s.is_enemy and s.stats.hp > 0:
+				enemy_cells.append(s.grid_position)
+		grid_manager.highlight_reachable_cells(enemy_cells, "red")
 
 func _on_btn_reload_pressed() -> void:
 	if not is_instance_valid(selected_soldier): return
@@ -225,23 +231,36 @@ func _on_btn_heal_pressed() -> void:
 
 func _on_btn_grenade_pressed() -> void:
 	if not is_instance_valid(selected_soldier): return
-	var closest_enemy = null
-	var min_dist = 999
-	for enemy in GameManager.all_soldiers:
-		if is_instance_valid(enemy) and enemy.is_enemy and enemy.stats.hp > 0:
-			var dist = CombatCalculator.get_distance(selected_soldier.grid_position, enemy.grid_position)
-			if dist < min_dist:
-				min_dist = dist
-				closest_enemy = enemy
-				
-	if closest_enemy and min_dist <= 5:
-		GameManager.execute_grenade(selected_soldier, closest_enemy.grid_position)
-	else:
-		EventBus.combat_log_added.emit("No hay enemigos en el rango de lanzamiento de granada (5 celdas).", "info")
+	GameManager.selected_action = "grenade"
+	EventBus.combat_log_added.emit("Selecciona una casilla para lanzar la granada (Rango: 5 celdas).", "info")
+	
+	var grid_manager = get_tree().current_scene.get_node("GridManager") as GridManager
+	if grid_manager:
+		grid_manager.clear_highlights()
+		# Encontrar todas las celdas en un radio Manhattan de 5
+		var grenade_cells: Array[Vector2i] = []
+		var start_pos = selected_soldier.grid_position
+		for dx in range(-5, 6):
+			for dy in range(-5, 6):
+				if abs(dx) + abs(dy) <= 5:
+					var target_pos = start_pos + Vector2i(dx, dy)
+					# Comprobar limites de la cuadricula
+					if target_pos.x >= 0 and target_pos.x < GameManager.grid_size and target_pos.y >= 0 and target_pos.y < GameManager.grid_size:
+						grenade_cells.append(target_pos)
+		grid_manager.highlight_reachable_cells(grenade_cells, "red")
 
 func _on_btn_end_turn_pressed() -> void:
-	# End Turn Trinchera triggers trincheras
-	GameManager.end_turn()
+	if not is_instance_valid(selected_soldier): return
+	# Buscar el siguiente soldado aliado vivo en el escuadron de forma ciclica
+	var player_soldiers = GameManager.all_soldiers.filter(func(s): return is_instance_valid(s) and not s.is_enemy and s.stats.hp > 0)
+	if player_soldiers.size() > 1:
+		var current_idx = player_soldiers.find(selected_soldier)
+		var next_idx = (current_idx + 1) % player_soldiers.size()
+		var next_soldier = player_soldiers[next_idx]
+		EventBus.soldier_selected.emit(next_soldier)
+		EventBus.combat_log_added.emit("Cambiado a: %s." % next_soldier.soldier_name, "info")
+	else:
+		EventBus.combat_log_added.emit("No hay otros soldados aliados disponibles.", "info")
 
 func _on_btn_turn_pressed() -> void:
 	GameManager.end_turn()

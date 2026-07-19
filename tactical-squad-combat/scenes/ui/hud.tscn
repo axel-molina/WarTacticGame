@@ -458,8 +458,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_font_sizes/font_size = 10
 theme_override_styles/normal = SubResource("StyleBoxFlat_TurnButton")
-text = "🚧 TRINCHERA
-PASIVA"
+text = "👤 CAMBIAR
+PERSONAJE"
 
 [node name="LogPanel" type="PanelContainer" parent="HUD/BottomPanel/HBox"]
 custom_minimum_size = Vector2(300, 160)
