@@ -51,6 +51,15 @@ func _ready() -> void:
 	btn_end_turn.pressed.connect(_on_btn_end_turn_pressed)
 	btn_turn.pressed.connect(_on_btn_turn_pressed)
 	
+	# Connect hover sounds
+	var action_buttons = [btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn]
+	for btn in action_buttons:
+		if btn:
+			btn.mouse_entered.connect(func():
+				if not btn.disabled:
+					AudioManager.play_sfx("ui_hover_combat")
+			)
+	
 	update_hud_display()
 
 func _on_soldier_selected(soldier: SoldierController) -> void:
@@ -95,7 +104,7 @@ func _on_combat_log_added(message: String, type: String) -> void:
 		color_str = "pink"
 	elif type == "death": 
 		color_str = "orange"
-		if "Alien" in message or "Plasma" in message:
+		if "Enemigo" in message or "Plasma" in message:
 			total_kills += 1
 	elif type == "system": 
 		color_str = "cyan"
@@ -125,7 +134,7 @@ func _on_turn_changed(new_owner: String) -> void:
 			label_turn.text = "TU TURNO"
 			label_turn.modulate = Color.GREEN
 		else:
-			label_turn.text = "TURNO ALIENÍGENA"
+			label_turn.text = "TURNO DE LOS ENEMIGOS"
 			label_turn.modulate = Color.RED
 	update_hud_display()
 

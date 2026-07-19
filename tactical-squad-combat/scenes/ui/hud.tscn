@@ -166,6 +166,8 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ActionPanel"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_TurnButton"]
 bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.8)
 border_width_left = 1
@@ -244,7 +246,7 @@ vertical_alignment = 1
 [node name="StatsBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
 layout_mode = 2
 theme_override_constants/margin_right = 10
-theme_override_constants/separation = 16
+theme_override_constants/separation = 32
 alignment = 2
 
 [node name="DmgDealt" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/StatsBox"]
@@ -309,7 +311,7 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 7
-text = "ALIENÍGENAS K.O."
+text = "ENEMIGOS K.O."
 horizontal_alignment = 1
 
 [node name="Val" type="Label" parent="HUD/TopPanel/Margin/HBox/StatsBox/Kills/VBox"]
@@ -436,7 +438,7 @@ anchor_left = 0.31
 anchor_top = 0.76
 anchor_right = 0.69
 anchor_bottom = 0.94
-theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ActionPanel")
 
 [node name="Margin" type="MarginContainer" parent="HUD/ActionPanel"]
 layout_mode = 2

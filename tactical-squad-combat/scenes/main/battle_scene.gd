@@ -29,8 +29,8 @@ func spawn_squads() -> void:
 	
 	# Enemy squad (Far/Front zone in a 12x12 grid)
 	spawn_soldier("Plasma Trooper", class_trooper, Vector2i(8, 9), true)
-	spawn_soldier("Alien Ranger", class_ranger, Vector2i(9, 10), true)
-	spawn_soldier("Alien Dreadnought", class_heavy, Vector2i(7, 10), true)
+	spawn_soldier("Ranger Enemigo", class_ranger, Vector2i(9, 10), true)
+	spawn_soldier("Dreadnought Enemigo", class_heavy, Vector2i(7, 10), true)
 	
 	# Focus camera on the first player soldier
 	if GameManager.all_soldiers.size() > 0:

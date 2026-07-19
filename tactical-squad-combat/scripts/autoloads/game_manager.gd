@@ -73,44 +73,64 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 	var ammo_consumed = 3 if shooter.class_data.class_id == "assault" else 1
 	shooter.stats.ammo = max(0, shooter.stats.ammo - ammo_consumed)
 	
-	if is_hit:
-		var dmg = breakdown.final_damage
-		EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto). Daño: %d" % [
-			shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, dmg
-		], "player_attack" if not shooter.is_enemy else "enemy_attack")
-		
-		# Sonido de disparo e impacto
-		var is_shotgun = shooter.class_data.class_id == "assault"
-		if is_shotgun:
-			AudioManager.play_sfx("fire_shotgun")
-		else:
-			AudioManager.play_sfx("fire_rifle")
-		
-		# Pequeño delay para el sonido del impacto
-		get_tree().create_timer(0.15).timeout.connect(func():
-			AudioManager.play_sfx("hit")
-		)
-		
-		defender.take_damage(dmg)
-	else:
-		EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto) pero erra el tiro." % [
-			shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy
-		], "info")
-		
-		# Sonido de disparo (fallido)
-		var is_shotgun = shooter.class_data.class_id == "assault"
-		if is_shotgun:
-			AudioManager.play_sfx("fire_shotgun")
-		else:
-			AudioManager.play_sfx("fire_rifle")
-		
 	# Focus camera on combat location
 	var camera = get_tree().current_scene.get_node("TacticalCamera") as TacticalCamera
 	if camera:
 		camera.target_focus = defender.global_position
+
+	# 1. Reproducir sonido de disparo
+	var is_shotgun = shooter.class_data.class_id == "assault"
+	if is_shotgun:
+		AudioManager.play_sfx("fire_shotgun")
+	else:
+		AudioManager.play_sfx("fire_rifle")
+		
+	# 2. Instanciar Proyectil 3D (Bala luminosa)
+	var start_pos = shooter.global_position + Vector3(0, 1.2, 0)
+	# Si es impacto, apunta al pecho del defensor. Si falla, desviar la trayectoria.
+	var end_pos = defender.global_position + Vector3(0, 1.2, 0)
+	if not is_hit:
+		# Desvío aleatorio
+		end_pos += Vector3(randf_range(-1.5, 1.5), randf_range(-0.5, 1.0), randf_range(-1.5, 1.5))
+	
+	var projectile = MeshInstance3D.new()
+	var sphere = SphereMesh.new()
+	sphere.radius = 0.08
+	sphere.height = 0.16
+	projectile.mesh = sphere
+	
+	var material = StandardMaterial3D.new()
+	material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = Color(1.0, 0.8, 0.1) # Amarillo brillante
+	projectile.material_override = material
+	
+	get_tree().current_scene.add_child(projectile)
+	projectile.global_position = start_pos
+	
+	# Mover el proyectil con Tween
+	var travel_duration = 0.2
+	var tween = create_tween()
+	tween.tween_property(projectile, "global_position", end_pos, travel_duration)
+	
+	# 3. Aplicar efectos al llegar al destino
+	tween.tween_callback(func():
+		projectile.queue_free()
+		if is_hit:
+			var dmg = breakdown.final_damage
+			EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto). Daño: %d" % [
+				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, dmg
+			], "player_attack" if not shooter.is_enemy else "enemy_attack")
+			
+			AudioManager.play_sfx("hit")
+			defender.take_damage(dmg)
+			check_battle_status()
+		else:
+			EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto) pero erra el tiro." % [
+				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy
+			], "info")
+	)
 		
 	EventBus.soldier_selected.emit(shooter)
-	check_battle_status()
 
 func execute_reload(soldier: SoldierController) -> void:
 	if soldier.stats.ap <= 0:
@@ -153,6 +173,38 @@ func execute_grenade(thrower: SoldierController, target_pos: Vector2i) -> void:
 	# Play explosion sound 3D
 	AudioManager.play_sfx_3d("grenade_explosion", target_world_pos)
 	
+	# --- VFX de Explosión de Granada (CPUParticles3D) ---
+	var particles = CPUParticles3D.new()
+	particles.emitting = false
+	particles.one_shot = true
+	particles.amount = 40
+	particles.lifetime = 0.6
+	particles.explosiveness = 1.0
+	particles.direction = Vector3(0, 1, 0)
+	particles.spread = 180.0
+	particles.gravity = Vector3(0, -5, 0)
+	particles.initial_velocity_min = 4.0
+	particles.initial_velocity_max = 8.0
+	
+	# Malla para cada partícula (pequeñas esferas)
+	var sphere = SphereMesh.new()
+	sphere.radius = 0.15
+	sphere.height = 0.3
+	particles.mesh = sphere
+	
+	# Material de partícula emisor de calor
+	var material = StandardMaterial3D.new()
+	material.shading_mode = StandardMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_color = Color(1.0, 0.4, 0.1) # Naranja fuego
+	particles.material_override = material
+	
+	get_tree().current_scene.add_child(particles)
+	particles.global_position = target_world_pos
+	particles.emitting = true
+	
+	# Autodestrucción del emisor tras la animación
+	get_tree().create_timer(1.0).timeout.connect(particles.queue_free)
+	
 	# Splash damage in 1-cell radius (Manhattan dist <= 1)
 	var targets_to_damage = []
 	for soldier in all_soldiers:
@@ -185,7 +237,7 @@ func end_turn() -> void:
 					EventBus.combat_log_added.emit("🛡️ %s se trinchera (Hunker Down)." % [soldier.soldier_name], "info")
 		
 		turn_owner = "enemy"
-		EventBus.combat_log_added.emit("🚨 Turno de la Inteligencia Alienígena.", "system")
+		EventBus.combat_log_added.emit("🚨 Turno de los Enemigos.", "system")
 		turn_changed.emit(turn_owner)
 		EventBus.turn_changed.emit(turn_owner)
 		
@@ -231,6 +283,6 @@ func check_battle_status() -> void:
 				players_alive += 1
 				
 	if enemies_alive == 0:
-		EventBus.combat_log_added.emit("🏆 ¡VICTORIA! Escuadrón alienígena aniquilado.", "system")
+		EventBus.combat_log_added.emit("🏆 ¡VICTORIA! Escuadrón enemigo eliminado.", "system")
 	elif players_alive == 0:
 		EventBus.combat_log_added.emit("💀 ¡DERROTA! Todo tu escuadrón ha caído.", "system")
