@@ -45,8 +45,7 @@ func _ready() -> void:
 	btn_save_options.pressed.connect(_on_save_options)
 	slider_music.value_changed.connect(func(val):
 		SettingsManager.music_volume = val
-		if has_node("/root/AudioManager"):
-			AudioManager.update_volumes()
+		AudioManager.update_volumes()
 	)
 	slider_sfx.value_changed.connect(func(val):
 		SettingsManager.sfx_volume = val
@@ -60,8 +59,7 @@ func _ready() -> void:
 		if btn:
 			btn.mouse_entered.connect(func():
 				if not btn.disabled:
-					if has_node("/root/AudioManager"):
-						AudioManager.play_sfx("ui_hover")
+					AudioManager.play_sfx("ui_hover")
 					
 					# Highlight text if it is a main menu option
 					if btn in main_menu_buttons:
@@ -77,8 +75,7 @@ func _ready() -> void:
 			)
 			btn.pressed.connect(func():
 				if not btn.disabled:
-					if has_node("/root/AudioManager"):
-						AudioManager.play_sfx("ui_click_menu")
+					AudioManager.play_sfx("ui_click_menu")
 			)
 	
 	# Disable buttons not available in MVP
@@ -91,8 +88,7 @@ func _ready() -> void:
 	options_panel.visible = false
 	
 	# Play background music
-	if has_node("/root/AudioManager"):
-		AudioManager.play_music("menu_theme")
+	AudioManager.play_music("menu_theme")
 
 func _on_new_campaign() -> void:
 	campaign_setup_panel.visible = true

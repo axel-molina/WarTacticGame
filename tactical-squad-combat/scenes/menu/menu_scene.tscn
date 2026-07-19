@@ -1,21 +1,34 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene format=3 uid="uid://bt7n0s6u6052g"]
 
-[ext_resource type="Script" path="res://scripts/ui/menu_controller.gd" id="1_controller"]
-[ext_resource type="Texture2D" path="res://images/bg_menu.png" id="2_bg"]
-[ext_resource type="Texture2D" path="res://images/logo.png" id="3_logo"]
-[ext_resource type="Texture2D" path="res://images/icons/target_icon.png" id="4_target"]
-[ext_resource type="Texture2D" path="res://images/icons/save_icon.png" id="5_save"]
-[ext_resource type="Texture2D" path="res://images/icons/combat_icon.png" id="6_combat"]
-[ext_resource type="Texture2D" path="res://images/icons/personalize_icon.png" id="7_personalize"]
-[ext_resource type="Texture2D" path="res://images/icons/gear_icon.png" id="8_gear"]
-[ext_resource type="Texture2D" path="res://images/icons/group_icon.png" id="9_group"]
-[ext_resource type="Texture2D" path="res://images/icons/exit_icon.png" id="10_exit"]
-[ext_resource type="Texture2D" path="res://images/icons/discord_icon.png" id="11_discord"]
-[ext_resource type="Texture2D" path="res://images/icons/manual_icon.png" id="12_manual"]
-[ext_resource type="Texture2D" path="res://images/icons/notices_icon.png" id="13_notices"]
+[ext_resource type="Script" uid="uid://b6wd4i472e2ce" path="res://scripts/ui/menu_controller.gd" id="1_controller"]
+[ext_resource type="Texture2D" uid="uid://cggewrqppmy0j" path="res://images/bg_menu.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://dcbvlwkwu1k31" path="res://images/logo.png" id="3_logo"]
+[ext_resource type="Texture2D" uid="uid://dknpfv3j18403" path="res://images/icons/target_icon.png" id="4_target"]
+[ext_resource type="Texture2D" uid="uid://umusv76ccv7t" path="res://images/icons/save_icon.png" id="5_save"]
+[ext_resource type="Texture2D" uid="uid://c6wrrgoi4w33f" path="res://images/icons/combat_icon.png" id="6_combat"]
+[ext_resource type="Texture2D" uid="uid://bqer7vkkwylr" path="res://images/icons/personalize_icon.png" id="7_personalize"]
+[ext_resource type="Texture2D" uid="uid://bri2bc2nvy6r5" path="res://images/icons/gear_icon.png" id="8_gear"]
+[ext_resource type="Texture2D" uid="uid://bbdpiissya3e6" path="res://images/icons/group_icon.png" id="9_group"]
+[ext_resource type="Texture2D" uid="uid://0orui6ocy0lm" path="res://images/icons/exit_icon.png" id="10_exit"]
+[ext_resource type="Texture2D" uid="uid://dmgu6cqovrxtk" path="res://images/icons/discord_icon.png" id="11_discord"]
+[ext_resource type="Texture2D" uid="uid://frm2mtrypig4" path="res://images/icons/manual_icon.png" id="12_manual"]
+[ext_resource type="Texture2D" uid="uid://uci5dctageux" path="res://images/icons/notices_icon.png" id="13_notices"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_normal"]
 bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.9)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_pressed"]
+bg_color = Color(0.00784314, 0.0470588, 0.0784314, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.941176, 1, 0.8)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -33,18 +46,6 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_pressed"]
-bg_color = Color(0.00784314, 0.0470588, 0.0784314, 0.95)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0, 0.941176, 1, 0.8)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_disabled"]
 bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.5)
 corner_radius_top_left = 2
@@ -53,7 +54,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
-bg_color = Color(0.0352941, 0.0666667, 0.109804, 1.0)
+bg_color = Color(0.0352941, 0.0666667, 0.109804, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -66,6 +67,18 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0, 0.941176, 1, 0.3)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_profile_card"]
+bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.09, 0.2, 0.3, 0.5)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -90,19 +103,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_profile_card"]
-bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.7)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.09, 0.2, 0.3, 0.5)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[node name="MenuScene" type="Control"]
+[node name="MenuScene" type="Control" unique_id=375632328]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_controller")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=352172648]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,7 +123,7 @@ texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TitlePanel" type="MarginContainer" parent="."]
+[node name="TitlePanel" type="MarginContainer" parent="." unique_id=1387066750]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -132,11 +133,11 @@ anchor_bottom = 0.15
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
-[node name="HBox" type="HBoxContainer" parent="TitlePanel"]
+[node name="HBox" type="HBoxContainer" parent="TitlePanel" unique_id=1495017694]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LogoRect" type="TextureRect" parent="TitlePanel/HBox"]
+[node name="LogoRect" type="TextureRect" parent="TitlePanel/HBox" unique_id=47452918]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 4
@@ -144,24 +145,23 @@ texture = ExtResource("3_logo")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="TitlePanel/HBox"]
+[node name="VBox" type="VBoxContainer" parent="TitlePanel/HBox" unique_id=531758920]
 layout_mode = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="TitlePanel/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="TitlePanel/HBox/VBox" unique_id=2074212012]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 20
-text = "TACTICAL SQUAD
-COMBAT MVP"
+text = "TACTICAL SQUAD COMBAT "
 
-[node name="LabelSubtitle" type="Label" parent="TitlePanel/HBox/VBox"]
+[node name="LabelSubtitle" type="Label" parent="TitlePanel/HBox/VBox" unique_id=52964525]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.75, 0.9, 0.7)
 theme_override_font_sizes/font_size = 9
 text = "SISTEMA DE PRUEBA DE MECÁNICA — VERSIÓN MVP"
 
-[node name="MenuContainer" type="VBoxContainer" parent="."]
+[node name="MenuContainer" type="VBoxContainer" parent="." unique_id=488717919]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -170,392 +170,392 @@ anchor_right = 0.28
 anchor_bottom = 0.8
 theme_override_constants/separation = 8
 
-[node name="BtnNewCampaign" type="Button" parent="MenuContainer"]
+[node name="BtnNewCampaign" type="Button" parent="MenuContainer" unique_id=331918532]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnNewCampaign"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnNewCampaign" unique_id=351089502]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin" unique_id=1934517957]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox" unique_id=1403939048]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnNewCampaign/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnNewCampaign/Margin/HBox/IconBox" unique_id=1789428971]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("4_target")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox" unique_id=912022206]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox" unique_id=1329396647]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "NUEVA CAMPAÑA"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox" unique_id=1352096536]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Inicia una nueva operación táctica"
 
-[node name="BtnLoadGame" type="Button" parent="MenuContainer"]
+[node name="BtnLoadGame" type="Button" parent="MenuContainer" unique_id=544487628]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnLoadGame"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnLoadGame" unique_id=15412612]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnLoadGame/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnLoadGame/Margin" unique_id=1623284962]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox" unique_id=788048887]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnLoadGame/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnLoadGame/Margin/HBox/IconBox" unique_id=2041169978]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("5_save")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox" unique_id=956710842]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox" unique_id=1223292184]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "CARGAR PARTIDA"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox" unique_id=1673181314]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Continúa tu progreso"
 
-[node name="BtnSkirmish" type="Button" parent="MenuContainer"]
+[node name="BtnSkirmish" type="Button" parent="MenuContainer" unique_id=1855820784]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnSkirmish"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnSkirmish" unique_id=209351815]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnSkirmish/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnSkirmish/Margin" unique_id=1493419080]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox" unique_id=2101043367]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnSkirmish/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnSkirmish/Margin/HBox/IconBox" unique_id=1626280778]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("6_combat")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox" unique_id=78630242]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox" unique_id=1915096982]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "ESCARAMUZA"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox" unique_id=1823538057]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Batalla rápida personalizada"
 
-[node name="BtnCustomize" type="Button" parent="MenuContainer"]
+[node name="BtnCustomize" type="Button" parent="MenuContainer" unique_id=1247454415]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCustomize"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCustomize" unique_id=695627091]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCustomize/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCustomize/Margin" unique_id=1690057420]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCustomize/Margin/HBox" unique_id=1333429867]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCustomize/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCustomize/Margin/HBox/IconBox" unique_id=726300450]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("7_personalize")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCustomize/Margin/HBox" unique_id=1350781867]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox" unique_id=379596096]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "PERSONALIZAR"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox" unique_id=847302530]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Edita tu escuadrón y equipo"
 
-[node name="BtnOptions" type="Button" parent="MenuContainer"]
+[node name="BtnOptions" type="Button" parent="MenuContainer" unique_id=1477810137]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnOptions"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnOptions" unique_id=388840110]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnOptions/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnOptions/Margin" unique_id=654297654]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnOptions/Margin/HBox" unique_id=517199747]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnOptions/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnOptions/Margin/HBox/IconBox" unique_id=1099593581]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("8_gear")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnOptions/Margin/HBox" unique_id=1495244866]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox" unique_id=1287476097]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "OPCIONES"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox" unique_id=423812762]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Ajustes del juego"
 
-[node name="BtnCredits" type="Button" parent="MenuContainer"]
+[node name="BtnCredits" type="Button" parent="MenuContainer" unique_id=1559214866]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCredits"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnCredits" unique_id=1288956439]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCredits/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCredits/Margin" unique_id=948799571]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCredits/Margin/HBox" unique_id=1544853132]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCredits/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCredits/Margin/HBox/IconBox" unique_id=1683909870]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("9_group")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCredits/Margin/HBox" unique_id=1783635690]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox" unique_id=1285721074]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "CRÉDITOS"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox" unique_id=1005987866]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Equipo de desarrollo"
 
-[node name="BtnQuit" type="Button" parent="MenuContainer"]
+[node name="BtnQuit" type="Button" parent="MenuContainer" unique_id=1223828169]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bg_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bg_disabled")
 
-[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnQuit"]
+[node name="Margin" type="MarginContainer" parent="MenuContainer/BtnQuit" unique_id=785842293]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_right = 16
 
-[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnQuit/Margin"]
+[node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnQuit/Margin" unique_id=1994162115]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 12
 
-[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
+[node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnQuit/Margin/HBox" unique_id=731102810]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="TextureRect" parent="MenuContainer/BtnQuit/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnQuit/Margin/HBox/IconBox" unique_id=764419757]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("10_exit")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnQuit/Margin/HBox" unique_id=1271823771]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="LabelTitle" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox"]
+[node name="LabelTitle" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox" unique_id=1501108828]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 11
 text = "SALIR"
 
-[node name="LabelDesc" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox"]
+[node name="LabelDesc" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox" unique_id=485231573]
 layout_mode = 2
-mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 8
 text = "Salir del juego"
 
-[node name="CampaignSetupPanel" type="PanelContainer" parent="."]
+[node name="CampaignSetupPanel" type="PanelContainer" parent="." unique_id=606818046]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -565,24 +565,24 @@ anchor_right = 0.95
 anchor_bottom = 0.8
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
-[node name="Margin" type="MarginContainer" parent="CampaignSetupPanel"]
+[node name="Margin" type="MarginContainer" parent="CampaignSetupPanel" unique_id=1022988527]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBox" type="VBoxContainer" parent="CampaignSetupPanel/Margin"]
+[node name="VBox" type="VBoxContainer" parent="CampaignSetupPanel/Margin" unique_id=1792314106]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LabelTitle" type="Label" parent="CampaignSetupPanel/Margin/VBox"]
+[node name="LabelTitle" type="Label" parent="CampaignSetupPanel/Margin/VBox" unique_id=1270390534]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.941, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "CONFIGURACIÓN DE CAMPAÑA"
 
-[node name="LabelDiff" type="Label" parent="CampaignSetupPanel/Margin/VBox"]
+[node name="LabelDiff" type="Label" parent="CampaignSetupPanel/Margin/VBox" unique_id=1961555589]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 10
@@ -590,21 +590,21 @@ text = "Dificultad: Normal
 Escuadrón: 3 soldados (Asalto, Francotirador, Médico)
 Mapa: Zona Urbana 12x12"
 
-[node name="BtnStartOperation" type="Button" parent="CampaignSetupPanel/Margin/VBox"]
+[node name="BtnStartOperation" type="Button" parent="CampaignSetupPanel/Margin/VBox" unique_id=1216539273]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 text = "▶ INICIAR OPERACIÓN"
 
-[node name="BtnCancelSetup" type="Button" parent="CampaignSetupPanel/Margin/VBox"]
+[node name="BtnCancelSetup" type="Button" parent="CampaignSetupPanel/Margin/VBox" unique_id=1358816598]
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 text = "✕ CANCELAR"
 
-[node name="OptionsPanel" type="PanelContainer" parent="."]
+[node name="OptionsPanel" type="PanelContainer" parent="." unique_id=1366738131]
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -614,93 +614,92 @@ anchor_right = 0.95
 anchor_bottom = 0.8
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel_dark")
 
-[node name="Margin" type="MarginContainer" parent="OptionsPanel"]
+[node name="Margin" type="MarginContainer" parent="OptionsPanel" unique_id=1789849017]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBox" type="VBoxContainer" parent="OptionsPanel/Margin"]
+[node name="VBox" type="VBoxContainer" parent="OptionsPanel/Margin" unique_id=1421438204]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LabelTitle" type="Label" parent="OptionsPanel/Margin/VBox"]
+[node name="LabelTitle" type="Label" parent="OptionsPanel/Margin/VBox" unique_id=1208530164]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.941, 1, 1)
 theme_override_font_sizes/font_size = 16
 text = "OPCIONES"
 
-[node name="HBoxMusic" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+[node name="HBoxMusic" type="HBoxContainer" parent="OptionsPanel/Margin/VBox" unique_id=1274721479]
 layout_mode = 2
 
-[node name="LabelMusic" type="Label" parent="OptionsPanel/Margin/VBox/HBoxMusic"]
+[node name="LabelMusic" type="Label" parent="OptionsPanel/Margin/VBox/HBoxMusic" unique_id=1820483516]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 text = "Volumen Música"
 
-[node name="SliderMusic" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxMusic"]
+[node name="SliderMusic" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxMusic" unique_id=2141341785]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = 0.0
 max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="HBoxSFX" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+[node name="HBoxSFX" type="HBoxContainer" parent="OptionsPanel/Margin/VBox" unique_id=462750548]
 layout_mode = 2
 
-[node name="LabelSFX" type="Label" parent="OptionsPanel/Margin/VBox/HBoxSFX"]
+[node name="LabelSFX" type="Label" parent="OptionsPanel/Margin/VBox/HBoxSFX" unique_id=1783673750]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 text = "Volumen SFX"
 
-[node name="SliderSFX" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxSFX"]
+[node name="SliderSFX" type="HSlider" parent="OptionsPanel/Margin/VBox/HBoxSFX" unique_id=580049635]
 layout_mode = 2
 size_flags_horizontal = 3
-min_value = 0.0
 max_value = 1.0
 step = 0.05
 value = 0.8
 
-[node name="CheckFullscreen" type="CheckBox" parent="OptionsPanel/Margin/VBox"]
+[node name="CheckFullscreen" type="CheckBox" parent="OptionsPanel/Margin/VBox" unique_id=1854961787]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 text = "Pantalla Completa"
 
-[node name="HBoxRes" type="HBoxContainer" parent="OptionsPanel/Margin/VBox"]
+[node name="HBoxRes" type="HBoxContainer" parent="OptionsPanel/Margin/VBox" unique_id=1043226625]
 layout_mode = 2
 
-[node name="LabelRes" type="Label" parent="OptionsPanel/Margin/VBox/HBoxRes"]
+[node name="LabelRes" type="Label" parent="OptionsPanel/Margin/VBox/HBoxRes" unique_id=968793630]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 text = "Resolución"
 
-[node name="OptResolution" type="OptionButton" parent="OptionsPanel/Margin/VBox/HBoxRes"]
+[node name="OptResolution" type="OptionButton" parent="OptionsPanel/Margin/VBox/HBoxRes" unique_id=1096531404]
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 2
 popup/item_0/text = "1280 x 720"
+popup/item_0/id = 0
 popup/item_1/text = "1920 x 1080"
 popup/item_1/id = 1
 
-[node name="CheckRightDrag" type="CheckBox" parent="OptionsPanel/Margin/VBox"]
+[node name="CheckRightDrag" type="CheckBox" parent="OptionsPanel/Margin/VBox" unique_id=1741658517]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 button_pressed = true
 text = "Arrastrar Cámara con Click Derecho"
 
-[node name="BtnSaveOptions" type="Button" parent="OptionsPanel/Margin/VBox"]
+[node name="BtnSaveOptions" type="Button" parent="OptionsPanel/Margin/VBox" unique_id=192291000]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 text = "💾 GUARDAR OPCIONES"
 
-[node name="ProfileCard" type="PanelContainer" parent="."]
+[node name="ProfileCard" type="PanelContainer" parent="." unique_id=1014270446]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -709,18 +708,18 @@ anchor_right = 0.28
 anchor_bottom = 0.95
 theme_override_styles/panel = SubResource("StyleBoxFlat_profile_card")
 
-[node name="Margin" type="MarginContainer" parent="ProfileCard"]
+[node name="Margin" type="MarginContainer" parent="ProfileCard" unique_id=361667546]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBox" type="HBoxContainer" parent="ProfileCard/Margin"]
+[node name="HBox" type="HBoxContainer" parent="ProfileCard/Margin" unique_id=1775318102]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="AvatarRect" type="TextureRect" parent="ProfileCard/Margin/HBox"]
+[node name="AvatarRect" type="TextureRect" parent="ProfileCard/Margin/HBox" unique_id=2041057899]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 4
@@ -728,44 +727,43 @@ texture = ExtResource("3_logo")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="VBox" type="VBoxContainer" parent="ProfileCard/Margin/HBox"]
+[node name="VBox" type="VBoxContainer" parent="ProfileCard/Margin/HBox" unique_id=416357670]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="HBoxName" type="HBoxContainer" parent="ProfileCard/Margin/HBox/VBox"]
+[node name="HBoxName" type="HBoxContainer" parent="ProfileCard/Margin/HBox/VBox" unique_id=663077284]
 layout_mode = 2
 
-[node name="LabelName" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+[node name="LabelName" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName" unique_id=1984817636]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 11
 text = "COMANDANTE"
 
-[node name="Spacer" type="Control" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+[node name="Spacer" type="Control" parent="ProfileCard/Margin/HBox/VBox/HBoxName" unique_id=626569370]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LabelLevel" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+[node name="LabelLevel" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName" unique_id=626804957]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.75, 0.9, 0.7)
 theme_override_font_sizes/font_size = 9
 text = "Nivel 1"
 
-[node name="XPBar" type="ProgressBar" parent="ProfileCard/Margin/HBox/VBox"]
+[node name="XPBar" type="ProgressBar" parent="ProfileCard/Margin/HBox/VBox" unique_id=1553150231]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 theme_override_font_sizes/font_size = 6
-value = 0.0
 
-[node name="LabelXP" type="Label" parent="ProfileCard/Margin/HBox/VBox"]
+[node name="LabelXP" type="Label" parent="ProfileCard/Margin/HBox/VBox" unique_id=1481497151]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
 theme_override_font_sizes/font_size = 7
 text = "0 / 100 XP"
 horizontal_alignment = 2
 
-[node name="BottomRightButtons" type="HBoxContainer" parent="."]
+[node name="BottomRightButtons" type="HBoxContainer" parent="." unique_id=278124526]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.75
@@ -774,14 +772,14 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 theme_override_constants/separation = 12
 
-[node name="BtnDiscord" type="Button" parent="BottomRightButtons"]
+[node name="BtnDiscord" type="Button" parent="BottomRightButtons" unique_id=915861937]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
 
-[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnDiscord"]
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnDiscord" unique_id=1355419964]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -790,7 +788,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnDiscord/VBox"]
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnDiscord/VBox" unique_id=1628531234]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -798,21 +796,21 @@ texture = ExtResource("11_discord")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="BottomRightButtons/BtnDiscord/VBox"]
+[node name="Label" type="Label" parent="BottomRightButtons/BtnDiscord/VBox" unique_id=450604341]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 8
 text = "DISCORD"
 horizontal_alignment = 1
 
-[node name="BtnManual" type="Button" parent="BottomRightButtons"]
+[node name="BtnManual" type="Button" parent="BottomRightButtons" unique_id=1812236276]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
 
-[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnManual"]
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnManual" unique_id=1537785506]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -821,7 +819,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnManual/VBox"]
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnManual/VBox" unique_id=2083542175]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -829,21 +827,21 @@ texture = ExtResource("12_manual")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="BottomRightButtons/BtnManual/VBox"]
+[node name="Label" type="Label" parent="BottomRightButtons/BtnManual/VBox" unique_id=1166342037]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 8
 text = "MANUAL"
 horizontal_alignment = 1
 
-[node name="BtnNoticias" type="Button" parent="BottomRightButtons"]
+[node name="BtnNoticias" type="Button" parent="BottomRightButtons" unique_id=1263898500]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
 
-[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnNoticias"]
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnNoticias" unique_id=996849853]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -852,7 +850,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnNoticias/VBox"]
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnNoticias/VBox" unique_id=322672985]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -860,7 +858,7 @@ texture = ExtResource("13_notices")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="BottomRightButtons/BtnNoticias/VBox"]
+[node name="Label" type="Label" parent="BottomRightButtons/BtnNoticias/VBox" unique_id=810101904]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 theme_override_font_sizes/font_size = 8
