@@ -1,47 +1,59 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/menu_controller.gd" id="1_controller"]
+[ext_resource type="Texture2D" path="res://images/bg_menu.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://images/logo.png" id="3_logo"]
+[ext_resource type="Texture2D" path="res://images/icons/target_icon.png" id="4_target"]
+[ext_resource type="Texture2D" path="res://images/icons/save_icon.png" id="5_save"]
+[ext_resource type="Texture2D" path="res://images/icons/combat_icon.png" id="6_combat"]
+[ext_resource type="Texture2D" path="res://images/icons/personalize_icon.png" id="7_personalize"]
+[ext_resource type="Texture2D" path="res://images/icons/gear_icon.png" id="8_gear"]
+[ext_resource type="Texture2D" path="res://images/icons/group_icon.png" id="9_group"]
+[ext_resource type="Texture2D" path="res://images/icons/exit_icon.png" id="10_exit"]
+[ext_resource type="Texture2D" path="res://images/icons/discord_icon.png" id="11_discord"]
+[ext_resource type="Texture2D" path="res://images/icons/manual_icon.png" id="12_manual"]
+[ext_resource type="Texture2D" path="res://images/icons/notices_icon.png" id="13_notices"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_normal"]
-bg_color = Color(0.012, 0.098, 0.161, 0.9)
+bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.9)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_hover"]
-bg_color = Color(0.008, 0.047, 0.078, 0.95)
+bg_color = Color(0.00784314, 0.0470588, 0.0784314, 0.95)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0, 0.941, 1, 0.6)
+border_color = Color(0, 0.941176, 1, 0.6)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_pressed"]
-bg_color = Color(0.008, 0.047, 0.078, 0.95)
+bg_color = Color(0.00784314, 0.0470588, 0.0784314, 0.95)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0, 0.941, 1, 0.8)
+border_color = Color(0, 0.941176, 1, 0.8)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_disabled"]
-bg_color = Color(0.012, 0.098, 0.161, 0.5)
+bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.5)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iconbox"]
-bg_color = Color(0.035, 0.067, 0.11, 1.0)
+bg_color = Color(0.0352941, 0.0666667, 0.109804, 1.0)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -53,26 +65,38 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0, 0.941, 1, 0.3)
+border_color = Color(0, 0.941176, 1, 0.3)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_btn_normal"]
-bg_color = Color(0.012, 0.098, 0.161, 0.7)
+bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.7)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottom_btn_hover"]
-bg_color = Color(0.008, 0.047, 0.078, 0.9)
+bg_color = Color(0.00784314, 0.0470588, 0.0784314, 0.9)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0, 0.941, 1, 0.5)
+border_color = Color(0, 0.941176, 1, 0.5)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_profile_card"]
+bg_color = Color(0.0117647, 0.0980392, 0.160784, 0.7)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.09, 0.2, 0.3, 0.5)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -87,12 +111,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_controller")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.02, 0.04, 0.08, 1)
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="TitlePanel" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -101,25 +129,29 @@ anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.5
 anchor_bottom = 0.15
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 
 [node name="HBox" type="HBoxContainer" parent="TitlePanel"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="LabelIcon" type="Label" parent="TitlePanel/HBox"]
+[node name="LogoRect" type="TextureRect" parent="TitlePanel/HBox"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "⚔️"
+size_flags_vertical = 4
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="TitlePanel/HBox"]
 layout_mode = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="TitlePanel/HBox/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 20
 text = "TACTICAL SQUAD
 COMBAT MVP"
 
@@ -134,12 +166,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
 anchor_top = 0.2
-anchor_right = 0.4
-anchor_bottom = 0.85
+anchor_right = 0.28
+anchor_bottom = 0.8
 theme_override_constants/separation = 8
 
 [node name="BtnNewCampaign" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -158,25 +190,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnNewCampaign/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "🎖️"
+texture = ExtResource("4_target")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnNewCampaign/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnNewCampaign/Margin/HBox/VBox"]
 layout_mode = 2
@@ -189,11 +222,11 @@ text = "NUEVA CAMPAÑA"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 8
 text = "Inicia una nueva operación táctica"
 
 [node name="BtnLoadGame" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -212,25 +245,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnLoadGame/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnLoadGame/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "💾"
+texture = ExtResource("5_save")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnLoadGame/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnLoadGame/Margin/HBox/VBox"]
 layout_mode = 2
@@ -243,11 +277,11 @@ text = "CARGAR PARTIDA"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
-text = "Continúa una operación guardada"
+theme_override_font_sizes/font_size = 8
+text = "Continúa tu progreso"
 
 [node name="BtnSkirmish" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -266,25 +300,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnSkirmish/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnSkirmish/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "⚔️"
+texture = ExtResource("6_combat")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnSkirmish/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnSkirmish/Margin/HBox/VBox"]
 layout_mode = 2
@@ -297,11 +332,11 @@ text = "ESCARAMUZA"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
-text = "Batalla rápida con configuración por defecto"
+theme_override_font_sizes/font_size = 8
+text = "Batalla rápida personalizada"
 
 [node name="BtnCustomize" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -320,25 +355,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCustomize/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCustomize/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "🎨"
+texture = ExtResource("7_personalize")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCustomize/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnCustomize/Margin/HBox/VBox"]
 layout_mode = 2
@@ -351,11 +387,11 @@ text = "PERSONALIZAR"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
-text = "Personaliza tu escuadrón"
+theme_override_font_sizes/font_size = 8
+text = "Edita tu escuadrón y equipo"
 
 [node name="BtnOptions" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -374,25 +410,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnOptions/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnOptions/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "⚙️"
+texture = ExtResource("8_gear")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnOptions/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnOptions/Margin/HBox/VBox"]
 layout_mode = 2
@@ -405,11 +442,11 @@ text = "OPCIONES"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
-text = "Ajustes de video, audio y controles"
+theme_override_font_sizes/font_size = 8
+text = "Ajustes del juego"
 
 [node name="BtnCredits" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -428,25 +465,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnCredits/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnCredits/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "📜"
+texture = ExtResource("9_group")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnCredits/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnCredits/Margin/HBox/VBox"]
 layout_mode = 2
@@ -459,11 +497,11 @@ text = "CRÉDITOS"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 8
 text = "Equipo de desarrollo"
 
 [node name="BtnQuit" type="Button" parent="MenuContainer"]
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
@@ -482,25 +520,26 @@ theme_override_constants/margin_right = 16
 [node name="HBox" type="HBoxContainer" parent="MenuContainer/BtnQuit/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="IconBox" type="PanelContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_iconbox")
 
-[node name="Icon" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/IconBox"]
+[node name="Icon" type="TextureRect" parent="MenuContainer/BtnQuit/Margin/HBox/IconBox"]
 layout_mode = 2
 mouse_filter = 2
-horizontal_alignment = 1
-vertical_alignment = 1
-text = "🚪"
+texture = ExtResource("10_exit")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="VBox" type="VBoxContainer" parent="MenuContainer/BtnQuit/Margin/HBox"]
 layout_mode = 2
 mouse_filter = 2
+alignment = 1
 
 [node name="LabelTitle" type="Label" parent="MenuContainer/BtnQuit/Margin/HBox/VBox"]
 layout_mode = 2
@@ -513,8 +552,8 @@ text = "SALIR"
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
-theme_override_font_sizes/font_size = 9
-text = "Cerrar el juego"
+theme_override_font_sizes/font_size = 8
+text = "Salir del juego"
 
 [node name="CampaignSetupPanel" type="PanelContainer" parent="."]
 visible = false
@@ -661,32 +700,169 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bg_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bg_hover")
 text = "💾 GUARDAR OPCIONES"
 
+[node name="ProfileCard" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.83
+anchor_right = 0.28
+anchor_bottom = 0.95
+theme_override_styles/panel = SubResource("StyleBoxFlat_profile_card")
+
+[node name="Margin" type="MarginContainer" parent="ProfileCard"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBox" type="HBoxContainer" parent="ProfileCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="AvatarRect" type="TextureRect" parent="ProfileCard/Margin/HBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="ProfileCard/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxName" type="HBoxContainer" parent="ProfileCard/Margin/HBox/VBox"]
+layout_mode = 2
+
+[node name="LabelName" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+text = "COMANDANTE"
+
+[node name="Spacer" type="Control" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelLevel" type="Label" parent="ProfileCard/Margin/HBox/VBox/HBoxName"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.75, 0.9, 0.7)
+theme_override_font_sizes/font_size = 9
+text = "Nivel 1"
+
+[node name="XPBar" type="ProgressBar" parent="ProfileCard/Margin/HBox/VBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_font_sizes/font_size = 6
+value = 0.0
+
+[node name="LabelXP" type="Label" parent="ProfileCard/Margin/HBox/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.5, 0.6, 1)
+theme_override_font_sizes/font_size = 7
+text = "0 / 100 XP"
+horizontal_alignment = 2
+
 [node name="BottomRightButtons" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.65
-anchor_top = 0.9
+anchor_left = 0.75
+anchor_top = 0.85
 anchor_right = 0.95
-anchor_bottom = 0.97
-theme_override_constants/separation = 8
+anchor_bottom = 0.95
+theme_override_constants/separation = 12
 
 [node name="BtnDiscord" type="Button" parent="BottomRightButtons"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
-text = "💬 Discord"
+
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnDiscord"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnDiscord/VBox"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("11_discord")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomRightButtons/BtnDiscord/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 8
+text = "DISCORD"
+horizontal_alignment = 1
 
 [node name="BtnManual" type="Button" parent="BottomRightButtons"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
-text = "📖 Manual"
+
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnManual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnManual/VBox"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("12_manual")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomRightButtons/BtnManual/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 8
+text = "MANUAL"
+horizontal_alignment = 1
 
 [node name="BtnNoticias" type="Button" parent="BottomRightButtons"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_bottom_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bottom_btn_hover")
-text = "📰 Noticias"
+
+[node name="VBox" type="VBoxContainer" parent="BottomRightButtons/BtnNoticias"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="BottomRightButtons/BtnNoticias/VBox"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("13_notices")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="BottomRightButtons/BtnNoticias/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 8
+text = "NOTICIAS"
+horizontal_alignment = 1

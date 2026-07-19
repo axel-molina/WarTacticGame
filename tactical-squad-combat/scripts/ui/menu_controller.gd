@@ -43,8 +43,16 @@ func _ready() -> void:
 	
 	# Options panel connections
 	btn_save_options.pressed.connect(_on_save_options)
-	slider_music.value_changed.connect(func(val): pass) # AudioManager.set_music_volume(val) when available
-	slider_sfx.value_changed.connect(func(val): pass)    # AudioManager.set_sfx_volume(val) when available
+	slider_music.value_changed.connect(func(val):
+		SettingsManager.music_volume = val
+		var audio_mgr = get_node_or_null("/root/AudioManager")
+		if audio_mgr:
+			audio_mgr.update_volumes()
+	)
+	slider_sfx.value_changed.connect(func(val):
+		SettingsManager.sfx_volume = val
+		# Los SFX futuros usaran este valor al instanciarse
+	)
 	
 	# Hover and Click sounds for all buttons, plus color highlight for main menu options
 	var main_menu_buttons = [btn_new_campaign, btn_load_game, btn_skirmish, btn_customize, btn_options, btn_credits, btn_quit]

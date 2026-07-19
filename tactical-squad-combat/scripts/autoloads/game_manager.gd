@@ -78,11 +78,31 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 		EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto). Daño: %d" % [
 			shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, dmg
 		], "player_attack" if not shooter.is_enemy else "enemy_attack")
+		
+		# Sonido de disparo e impacto
+		var is_shotgun = shooter.class_data.class_id == "assault"
+		if is_shotgun:
+			AudioManager.play_sfx("fire_shotgun")
+		else:
+			AudioManager.play_sfx("fire_rifle")
+		
+		# Pequeño delay para el sonido del impacto
+		get_tree().create_timer(0.15).timeout.connect(func():
+			AudioManager.play_sfx("hit")
+		)
+		
 		defender.take_damage(dmg)
 	else:
 		EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto) pero erra el tiro." % [
 			shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy
 		], "info")
+		
+		# Sonido de disparo (fallido)
+		var is_shotgun = shooter.class_data.class_id == "assault"
+		if is_shotgun:
+			AudioManager.play_sfx("fire_shotgun")
+		else:
+			AudioManager.play_sfx("fire_rifle")
 		
 	# Focus camera on combat location
 	var camera = get_tree().current_scene.get_node("TacticalCamera") as TacticalCamera
@@ -97,6 +117,14 @@ func execute_reload(soldier: SoldierController) -> void:
 		return
 	soldier.stats.ap -= 1
 	soldier.stats.ammo = soldier.stats.max_ammo
+	
+	# Sonido de recarga
+	var is_shotgun = soldier.class_data.class_id == "assault"
+	if is_shotgun:
+		AudioManager.play_sfx("reload_shotgun")
+	else:
+		AudioManager.play_sfx("reload_rifle")
+		
 	EventBus.combat_log_added.emit("🔄 %s recarga su arma." % [soldier.soldier_name], "info")
 	EventBus.soldier_selected.emit(soldier)
 

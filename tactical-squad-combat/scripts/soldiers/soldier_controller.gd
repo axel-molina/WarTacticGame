@@ -60,6 +60,11 @@ func die() -> void:
 	EventBus.combat_log_added.emit("💀 %s ha sido incapacitado." % [soldier_name], "death")
 	GameManager.all_soldiers.erase(self)
 	
+	# Sonido de muerte aleatorio
+	var death_sounds = ["death_1", "death_2", "death_3"]
+	var random_death_sfx = death_sounds[randi() % death_sounds.size()]
+	AudioManager.play_sfx(random_death_sfx)
+	
 	# Simple death animation
 	var tween = create_tween()
 	tween.tween_property(self, "position:y", -2.0, 0.4)
