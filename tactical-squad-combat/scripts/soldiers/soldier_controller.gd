@@ -64,7 +64,7 @@ func take_damage(amount: int) -> void:
 	# 2. Spawnear Texto Flotante de Daño
 	var damage_label = Label3D.new()
 	damage_label.text = "-%d HP" % amount
-	damage_label.billboard = LabeledTextBillboard.BILLBOARD_ENABLED # Billboard 1 en Godot 4 es enabled
+	damage_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	damage_label.modulate = Color(1.0, 0.2, 0.2) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
 	damage_label.font_size = 28
 	damage_label.outline_size = 8
