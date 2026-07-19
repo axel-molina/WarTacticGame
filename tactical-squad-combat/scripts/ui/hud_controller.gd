@@ -1,32 +1,32 @@
 extends Control
 class_name HUDController
 
-@onready var panel_info: PanelContainer = $HUD/InfoPanel
-@onready var label_soldier: Label = $HUD/InfoPanel/Margin/VBox/HBoxHeader/LabelSoldier
-@onready var label_class: Label = $HUD/InfoPanel/Margin/VBox/HBoxHeader/LabelClass
-@onready var label_hp: Label = $HUD/InfoPanel/Margin/VBox/LabelHP
-@onready var hp_bar: ProgressBar = $HUD/InfoPanel/Margin/VBox/HPBar
-@onready var label_shield: Label = $HUD/InfoPanel/Margin/VBox/LabelShield
-@onready var shield_bar: ProgressBar = $HUD/InfoPanel/Margin/VBox/ShieldBar
-@onready var label_stats: Label = $HUD/InfoPanel/Margin/VBox/LabelStats
+@onready var panel_info: PanelContainer = $InfoPanel
+@onready var label_soldier: Label = $InfoPanel/Margin/HBox/VBox/HBoxHeader/LabelSoldier
+@onready var label_class: Label = $InfoPanel/Margin/VBox/HBoxHeader/LabelClass
+@onready var label_hp: Label = $InfoPanel/Margin/HBox/VBox/LabelHP
+@onready var hp_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/HPBar
+@onready var label_shield: Label = $InfoPanel/Margin/HBox/VBox/LabelShield
+@onready var shield_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/ShieldBar
+@onready var label_stats: Label = $InfoPanel/Margin/HBox/VBox/LabelStats
 
-@onready var panel_actions: PanelContainer = $HUD/ActionPanel
-@onready var btn_move: Button = $HUD/ActionPanel/Margin/HBox/BtnMove
-@onready var btn_shoot: Button = $HUD/ActionPanel/Margin/HBox/BtnShoot
-@onready var btn_reload: Button = $HUD/ActionPanel/Margin/HBox/BtnReload
-@onready var btn_heal: Button = $HUD/ActionPanel/Margin/HBox/BtnHeal
-@onready var btn_grenade: Button = $HUD/ActionPanel/Margin/HBox/BtnGrenade
-@onready var btn_end_turn: Button = $HUD/ActionPanel/Margin/HBox/BtnEndTurn
+@onready var panel_actions: PanelContainer = $ActionPanel
+@onready var btn_move: Button = $ActionPanel/Margin/HBox/BtnMove
+@onready var btn_shoot: Button = $ActionPanel/Margin/HBox/BtnShoot
+@onready var btn_reload: Button = $ActionPanel/Margin/HBox/BtnReload
+@onready var btn_heal: Button = $ActionPanel/Margin/HBox/BtnHeal
+@onready var btn_grenade: Button = $ActionPanel/Margin/HBox/BtnGrenade
+@onready var btn_end_turn: Button = $ActionPanel/Margin/HBox/BtnEndTurn
 
-@onready var text_log: RichTextLabel = $HUD/LogPanel/Margin/RichTextLabel
+@onready var text_log: RichTextLabel = $LogPanel/Margin/RichTextLabel
 @onready var label_turn: Label = null # No longer present as a separate banner
-@onready var btn_turn: Button = $HUD/BtnTurn
+@onready var btn_turn: Button = $BtnTurn
 
-@onready var label_dmg_dealt: Label = $HUD/TopPanel/Margin/HBox/StatsBox/DmgDealt/VBox/Val
-@onready var label_dmg_taken: Label = $HUD/TopPanel/Margin/HBox/StatsBox/DmgTaken/VBox/Val
-@onready var label_kills: Label = $HUD/TopPanel/Margin/HBox/StatsBox/Kills/VBox/Val
-@onready var label_accuracy: Label = $HUD/TopPanel/Margin/HBox/StatsBox/Accuracy/VBox/Val
-@onready var label_hostiles: Label = $HUD/TopPanel/Margin/HBox/RoundBox/HostilesPanel/Label
+@onready var label_dmg_dealt: Label = $TopPanel/Margin/HBox/StatsBox/DmgDealt/VBox/Val
+@onready var label_dmg_taken: Label = $TopPanel/Margin/HBox/StatsBox/DmgTaken/VBox/Val
+@onready var label_kills: Label = $TopPanel/Margin/HBox/StatsBox/Kills/VBox/Val
+@onready var label_accuracy: Label = $TopPanel/Margin/HBox/StatsBox/Accuracy/VBox/Val
+@onready var label_hostiles: Label = $TopPanel/Margin/HBox/RoundBox/HostilesPanel/Label
 
 var selected_soldier: SoldierController = null
 
