@@ -214,19 +214,15 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBox" type="HBoxContainer" parent="HUD/TopPanel/Margin"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
-[node name="RoundBox" type="HBoxContainer" parent="HUD/TopPanel/Margin/HBox"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
-
-[node name="RoundPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/RoundBox"]
+[node name="RoundPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox"]
 custom_minimum_size = Vector2(90, 32)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_RoundBox")
 
-[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/RoundBox/RoundPanel"]
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/RoundPanel"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
 theme_override_font_sizes/font_size = 9
@@ -234,22 +230,27 @@ text = "☉ RONDA 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HostilesPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox/RoundBox"]
+[node name="HostilesPanel" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox"]
 custom_minimum_size = Vector2(130, 32)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_HostileBox")
 
-[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/RoundBox/HostilesPanel"]
+[node name="Label" type="Label" parent="HUD/TopPanel/Margin/HBox/HostilesPanel"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.2, 0.2, 1)
 theme_override_font_sizes/font_size = 9
-text = "HOSTILES ACTIVOS: 3"
+text = "ENEMIGOS: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Spacer" type="Control" parent="HUD/TopPanel/Margin/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="StatsBoxContainer" type="PanelContainer" parent="HUD/TopPanel/Margin/HBox"]
 layout_mode = 2
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_Header")
 
 [node name="Margin" type="MarginContainer" parent="HUD/TopPanel/Margin/HBox/StatsBoxContainer"]

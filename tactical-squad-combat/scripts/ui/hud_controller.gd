@@ -26,7 +26,7 @@ class_name HUDController
 @onready var label_dmg_taken: Label = $TopPanel/Margin/HBox/StatsBoxContainer/Margin/StatsBox/DmgTaken/VBox/Val
 @onready var label_kills: Label = $TopPanel/Margin/HBox/StatsBoxContainer/Margin/StatsBox/Kills/VBox/Val
 @onready var label_accuracy: Label = $TopPanel/Margin/HBox/StatsBoxContainer/Margin/StatsBox/Accuracy/VBox/Val
-@onready var label_hostiles: Label = $TopPanel/Margin/HBox/RoundBox/HostilesPanel/Label
+@onready var label_hostiles: Label = $TopPanel/Margin/HBox/HostilesPanel/Label
 
 var selected_soldier: SoldierController = null
 
