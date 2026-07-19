@@ -3,7 +3,7 @@ class_name HUDController
 
 @onready var panel_info: PanelContainer = $InfoPanel
 @onready var label_soldier: Label = $InfoPanel/Margin/HBox/VBox/HBoxHeader/LabelSoldier
-@onready var label_class: Label = $InfoPanel/Margin/VBox/HBoxHeader/LabelClass
+@onready var label_class: Label = $InfoPanel/Margin/HBox/VBox/HBoxHeader/LabelClass
 @onready var label_hp: Label = $InfoPanel/Margin/HBox/VBox/LabelHP
 @onready var hp_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/HPBar
 @onready var label_shield: Label = $InfoPanel/Margin/HBox/VBox/LabelShield
