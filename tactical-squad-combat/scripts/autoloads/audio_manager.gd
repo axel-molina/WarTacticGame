@@ -7,8 +7,10 @@ var _music_player: AudioStreamPlayer = null
 # Preloaded streams
 var streams = {
 	"menu_theme": preload("res://sounds/Turn_Order_Fury.mp3"),
-	"ui_hover": null, # We will look for standard UI sounds or handle gracefully
-	"ui_click_menu": null,
+	"ui_hover": preload("res://sounds/ui/hover_menu_sound.mp3"), 
+	"ui_click_menu": preload("res://sounds/ui/click_menu_sound.mp3"),
+	"ui_error": preload("res://sounds/ui/error_sound.mp3"),
+	"ui_hover_combat": preload("res://sounds/ui/hover_combat_sound.mp3"),
 	"fire_rifle": preload("res://sounds/fire.mp3"),
 	"fire_shotgun": preload("res://sounds/shotgun fire.mp3"),
 	"reload_rifle": preload("res://sounds/recharge.mp3"),
