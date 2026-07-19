@@ -63,17 +63,21 @@ func take_damage(amount: int) -> void:
 			
 	# 2. Spawnear Texto Flotante de Daño
 	var damage_label = Label3D.new()
-	damage_label.text = "-%d HP" % amount
+	damage_label.text = "-%d" % amount
 	damage_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	damage_label.modulate = Color(1.0, 0.2, 0.2) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
-	damage_label.font_size = 28
-	damage_label.outline_size = 8
-	add_child(damage_label)
-	damage_label.global_position = global_position + Vector3(0, 1.8, 0)
+	damage_label.modulate = Color(1.0, 0.1, 0.1) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
+	damage_label.font_size = 64 # Mas grande para que se note claramente
+	damage_label.outline_size = 16
+	damage_label.no_depth_test = true # Se renderiza al frente de los objetos y paredes para que sea super visible
+	
+	# Añadir directamente a la escena principal para que no herede la rotacion local del soldado
+	get_parent().add_child(damage_label)
+	damage_label.global_position = global_position + Vector3(0, 2.2, 0)
 	
 	var tween = create_tween()
-	tween.tween_property(damage_label, "global_position:y", global_position.y + 2.8, 0.6)
-	tween.parallel().tween_property(damage_label, "modulate:a", 0.0, 0.6)
+	# Paneo hacia arriba
+	tween.tween_property(damage_label, "global_position:y", global_position.y + 3.5, 0.8)
+	tween.parallel().tween_property(damage_label, "modulate:a", 0.0, 0.8)
 	tween.tween_callback(damage_label.queue_free)
 	
 	# Update label visually if it exists
