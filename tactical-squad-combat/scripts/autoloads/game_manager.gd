@@ -115,10 +115,14 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 	# 3. Aplicar efectos al llegar al destino
 	tween.tween_callback(func():
 		projectile.queue_free()
+		var wound_info = ""
+		if breakdown.wound_modifier < 0:
+			wound_info = " [Herido: %d%% Puntería]" % breakdown.wound_modifier
+			
 		if is_hit:
 			var dmg = breakdown.final_damage
-			EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto). Daño: %d" % [
-				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, dmg
+			EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto)%s. Daño: %d" % [
+				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, wound_info, dmg
 			], "player_attack" if not shooter.is_enemy else "enemy_attack")
 			
 			# Registrar estadistica para MVP
@@ -134,8 +138,8 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 			defender.take_damage(dmg)
 			check_battle_status()
 		else:
-			EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto) pero erra el tiro." % [
-				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy
+			EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto)%s pero erra el tiro." % [
+				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, wound_info
 			], "info")
 			defender.show_floating_text("¡FALLÓ!", Color(0.7, 0.7, 0.7))
 	)
