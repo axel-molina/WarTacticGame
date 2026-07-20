@@ -42,6 +42,22 @@ class_name HUDController
 @onready var btn_confirm_end_turn: Button = $ConfirmTurnPanel/Center/Card/Margin/VBox/HBoxButtons/BtnConfirmEndTurn
 @onready var btn_cancel_end_turn: Button = $ConfirmTurnPanel/Center/Card/Margin/VBox/HBoxButtons/BtnCancelEndTurn
 
+# Botón de Pausa
+@onready var btn_pause: Button = $LeftHeader/BtnPause
+
+# Panel de Pausa
+@onready var pause_panel: ColorRect = $PausePanel
+@onready var pause_slider_music: HSlider = $PausePanel/Center/Card/Margin/VBox/HBoxMusic/SliderMusic
+@onready var pause_slider_sfx: HSlider = $PausePanel/Center/Card/Margin/VBox/HBoxSFX/SliderSFX
+@onready var pause_check_fullscreen: CheckBox = $PausePanel/Center/Card/Margin/VBox/CheckFullscreen
+@onready var pause_opt_resolution: OptionButton = $PausePanel/Center/Card/Margin/VBox/HBoxRes/OptResolution
+@onready var pause_check_right_drag: CheckBox = $PausePanel/Center/Card/Margin/VBox/CheckRightDrag
+@onready var pause_check_auto_center: CheckBox = $PausePanel/Center/Card/Margin/VBox/CheckAutoCenter
+
+@onready var btn_resume: Button = $PausePanel/Center/Card/Margin/VBox/HBoxButtons/BtnResume
+@onready var btn_save_settings: Button = $PausePanel/Center/Card/Margin/VBox/HBoxButtons/BtnSaveSettings
+@onready var btn_quit_to_menu: Button = $PausePanel/Center/Card/Margin/VBox/HBoxButtons/BtnQuitToMenu
+
 var selected_soldier: SoldierController = null
 
 # Local stats tracking
@@ -90,10 +106,68 @@ func _ready() -> void:
 		confirm_turn_panel.visible = false
 	)
 	
+	# Botón de Pausa (engranaje)
+	btn_pause.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		
+		# Sincronizar UI del panel de pausa con SettingsManager
+		pause_slider_music.value = SettingsManager.music_volume
+		pause_slider_sfx.value = SettingsManager.sfx_volume
+		pause_check_fullscreen.button_pressed = SettingsManager.fullscreen
+		pause_check_right_drag.button_pressed = SettingsManager.drag_with_right_click
+		pause_check_auto_center.button_pressed = SettingsManager.auto_center_camera
+		
+		if SettingsManager.resolution.x == 1280 and SettingsManager.resolution.y == 720:
+			pause_opt_resolution.selected = 0
+		elif SettingsManager.resolution.x == 1920 and SettingsManager.resolution.y == 1080:
+			pause_opt_resolution.selected = 1
+		else:
+			pause_opt_resolution.selected = -1
+			
+		pause_panel.visible = true
+	)
+	
+	# PausePanel buttons
+	btn_resume.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		pause_panel.visible = false
+	)
+	
+	btn_save_settings.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		
+		# Aplicar valores a SettingsManager
+		SettingsManager.music_volume = pause_slider_music.value
+		SettingsManager.sfx_volume = pause_slider_sfx.value
+		SettingsManager.fullscreen = pause_check_fullscreen.button_pressed
+		SettingsManager.drag_with_right_click = pause_check_right_drag.button_pressed
+		SettingsManager.auto_center_camera = pause_check_auto_center.button_pressed
+		
+		if pause_opt_resolution.selected == 0:
+			SettingsManager.resolution = Vector2i(1280, 720)
+		elif pause_opt_resolution.selected == 1:
+			SettingsManager.resolution = Vector2i(1920, 1080)
+			
+		SettingsManager.apply_video_settings()
+		SettingsManager.save_settings()
+		
+		# Sincronizar volumen del AudioManager
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(SettingsManager.music_volume))
+		AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(SettingsManager.sfx_volume))
+		
+		pause_panel.visible = false
+	)
+	
+	btn_quit_to_menu.pressed.connect(func():
+		pause_panel.visible = false
+		SceneTransition.change_scene("res://scenes/menu/menu_scene.tscn")
+	)
+	
 	# Connect hover sounds
 	var action_buttons = [
 		btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn, 
-		btn_main_menu, btn_continue, btn_confirm_end_turn, btn_cancel_end_turn
+		btn_main_menu, btn_continue, btn_confirm_end_turn, btn_cancel_end_turn,
+		btn_pause, btn_resume, btn_save_settings, btn_quit_to_menu
 	]
 	for btn in action_buttons:
 		if btn:
