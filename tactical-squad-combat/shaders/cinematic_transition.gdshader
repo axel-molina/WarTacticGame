@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float progress : hint_range(0.0, 1.0) = 0.0;
-uniform color_glow : source_color = Color(0.0, 0.94, 1.0, 1.0);
+uniform vec4 color_glow : source_color = vec4(0.0, 0.94, 1.0, 1.0);
 uniform float grid_size = 40.0;
 
 void fragment() {
@@ -13,7 +13,7 @@ void fragment() {
 	// Si el barrido está activo, pintar el color base oscuro con una rejilla táctica holográfica
 	if (sweep > 0.0) {
 		// Color de fondo oscuro (combinando con el cian)
-		vec4 bg_color = Color(0.007, 0.047, 0.078, 1.0);
+		vec4 bg_color = vec4(0.007, 0.047, 0.078, 1.0);
 		
 		// Crear líneas de cuadrícula digital
 		float grid_line_x = step(0.95, fract(uv.x * grid_size));
