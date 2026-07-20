@@ -49,9 +49,6 @@ func play_music(music_key: String) -> void:
 	_music_player.volume_db = linear_to_db(SettingsManager.music_volume)
 	_music_player.play()
 
-func stop_music() -> void:
-	_music_player.stop()
-
 func play_sfx(sfx_key: String) -> void:
 	if not streams.has(sfx_key) or streams[sfx_key] == null:
 		return
