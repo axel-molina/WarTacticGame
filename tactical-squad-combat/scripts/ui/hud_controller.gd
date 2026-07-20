@@ -29,6 +29,13 @@ class_name HUDController
 @onready var label_accuracy: Label = $RightHeader/Margin/StatsBox/Accuracy/VBox/Val
 @onready var label_hostiles: Label = $LeftHeader/HostilesPanel/Label
 
+# Referencias a VictoryPanel
+@onready var victory_panel: ColorRect = $VictoryPanel
+@onready var label_mvp: Label = $VictoryPanel/Center/Card/Margin/VBox/MVPBox/LabelMVP
+@onready var label_mvp_stats: Label = $VictoryPanel/Center/Card/Margin/VBox/MVPBox/LabelStats
+@onready var btn_main_menu: Button = $VictoryPanel/Center/Card/Margin/VBox/HBoxButtons/BtnMainMenu
+@onready var btn_continue: Button = $VictoryPanel/Center/Card/Margin/VBox/HBoxButtons/BtnContinue
+
 var selected_soldier: SoldierController = null
 
 # Local stats tracking
@@ -43,6 +50,9 @@ func _ready() -> void:
 	EventBus.combat_log_added.connect(_on_combat_log_added)
 	EventBus.turn_changed.connect(_on_turn_changed)
 	
+	# Connect signal of victory
+	EventBus.mission_victory.connect(_on_mission_victory)
+	
 	# Connect buttons
 	btn_move.pressed.connect(_on_btn_move_pressed)
 	btn_shoot.pressed.connect(_on_btn_shoot_pressed)
@@ -52,8 +62,19 @@ func _ready() -> void:
 	btn_end_turn.pressed.connect(_on_btn_end_turn_pressed)
 	btn_turn.pressed.connect(_on_btn_turn_pressed)
 	
+	# Victory buttons
+	btn_main_menu.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		get_tree().change_scene_to_file("res://scenes/menu/menu_scene.tscn")
+	)
+	
+	btn_continue.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		victory_panel.visible = false
+	)
+	
 	# Connect hover sounds
-	var action_buttons = [btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn]
+	var action_buttons = [btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn, btn_main_menu, btn_continue]
 	for btn in action_buttons:
 		if btn:
 			btn.mouse_entered.connect(func():
@@ -62,6 +83,17 @@ func _ready() -> void:
 			)
 	
 	update_hud_display()
+
+func _on_mission_victory(mvp_name: String, stats_dict: Dictionary) -> void:
+	if label_mvp:
+		label_mvp.text = "JUGADOR MVP: %s" % mvp_name.to_upper()
+	if label_mvp_stats:
+		label_mvp_stats.text = "BAJAS: %d      DAÑO REGISTRADO: %d HP" % [
+			stats_dict.get("mvp_kills", 0),
+			stats_dict.get("mvp_dmg", 0)
+		]
+	if victory_panel:
+		victory_panel.visible = true
 
 func _on_soldier_selected(soldier: SoldierController) -> void:
 	selected_soldier = soldier

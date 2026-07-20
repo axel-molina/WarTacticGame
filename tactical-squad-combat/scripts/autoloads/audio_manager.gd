@@ -20,6 +20,7 @@ var streams = {
 	"death_2": preload("res://sounds/death_2.wav"),
 	"death_3": preload("res://sounds/death_3.wav"),
 	"grenade_explosion": preload("res://sounds/granade_explosion.mp3"),
+	"victory_sound": preload("res://sounds/victory_sound.mp3"),
 }
 
 func _ready() -> void:
@@ -34,6 +35,10 @@ func _ready() -> void:
 		p.bus = "SFX"
 		add_child(p)
 		_sfx_players.append(p)
+
+func stop_music() -> void:
+	if _music_player and _music_player.playing:
+		_music_player.stop()
 
 func play_music(music_key: String) -> void:
 	if not streams.has(music_key) or streams[music_key] == null:

@@ -13,3 +13,5 @@ signal cell_clicked(grid_pos)
 signal turn_changed(new_owner) # "player" or "enemy"
 @warning_ignore("unused_signal")
 signal combat_log_added(message, type)
+@warning_ignore("unused_signal")
+signal mission_victory(mvp_name, stats_dict)

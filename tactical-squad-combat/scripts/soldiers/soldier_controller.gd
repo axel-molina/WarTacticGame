@@ -9,6 +9,10 @@ var stats: SoldierStats
 var grid_position: Vector2i
 var is_defending: bool = false
 
+# Estadísticas para el cálculo de MVP
+var kills_count: int = 0
+var damage_dealt_count: int = 0
+
 @onready var selection_ring: MeshInstance3D = $SelectionRing
 @onready var label_name: Label3D = $Label3D
 

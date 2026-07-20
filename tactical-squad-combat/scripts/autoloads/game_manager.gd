@@ -121,7 +121,16 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, dmg
 			], "player_attack" if not shooter.is_enemy else "enemy_attack")
 			
+			# Registrar estadistica para MVP
+			shooter.damage_dealt_count += dmg
+			
 			AudioManager.play_sfx("hit")
+			
+			# Si el golpe lo mata, sumamos baja al tirador
+			var will_die = (defender.stats.hp - (dmg - min(defender.stats.shield, dmg))) <= 0
+			if will_die:
+				shooter.kills_count += 1
+				
 			defender.take_damage(dmg)
 			check_battle_status()
 		else:
@@ -214,6 +223,12 @@ func execute_grenade(thrower: SoldierController, target_pos: Vector2i) -> void:
 				targets_to_damage.append(soldier)
 				
 	for target in targets_to_damage:
+		# Registrar estadisticas de MVP
+		thrower.damage_dealt_count += 35
+		var will_die = (target.stats.hp - (35 - min(target.stats.shield, 35))) <= 0
+		if will_die:
+			thrower.kills_count += 1
+			
 		target.take_damage(35)
 		
 	# Destroy cover at target and adjacent cells
@@ -284,5 +299,45 @@ func check_battle_status() -> void:
 				
 	if enemies_alive == 0:
 		EventBus.combat_log_added.emit("🏆 ¡VICTORIA! Escuadrón enemigo eliminado.", "system")
+		
+		# 1. Detener musica y reproducir sonido de victoria
+		AudioManager.stop_music()
+		AudioManager.play_music("victory_sound")
+		
+		# 2. Calcular Soldado MVP de la escuadra
+		var mvp_soldier: SoldierController = null
+		var best_kills = -1
+		var best_dmg = -1
+		
+		for soldier in all_soldiers:
+			if is_instance_valid(soldier) and not soldier.is_enemy:
+				# Prioridad a bajas, luego desempatar por daño
+				if soldier.kills_count > best_kills:
+					best_kills = soldier.kills_count
+					best_dmg = soldier.damage_dealt_count
+					mvp_soldier = soldier
+				elif soldier.kills_count == best_kills:
+					if soldier.damage_dealt_count > best_dmg:
+						best_dmg = soldier.damage_dealt_count
+						mvp_soldier = soldier
+						
+		var mvp_name = "Nadie"
+		var mvp_kills = 0
+		var mvp_dmg = 0
+		if mvp_soldier:
+			mvp_name = mvp_soldier.soldier_name
+			mvp_kills = mvp_soldier.kills_count
+			mvp_dmg = mvp_soldier.damage_dealt_count
+			
+		var stats_dict = {
+			"mvp_kills": mvp_kills,
+			"mvp_dmg": mvp_dmg
+		}
+		
+		# 3. Emitir evento de victoria táctica tras un breve retraso para la visualizacion
+		get_tree().create_timer(1.2).timeout.connect(func():
+			EventBus.mission_victory.emit(mvp_name, stats_dict)
+		)
+		
 	elif players_alive == 0:
 		EventBus.combat_log_added.emit("💀 ¡DERROTA! Todo tu escuadrón ha caído.", "system")

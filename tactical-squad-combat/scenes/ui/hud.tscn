@@ -767,3 +767,94 @@ theme_override_colors/font_color = Color(0, 0.941, 1, 1)
 theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_TurnButton")
 text = "♢ FINALIZAR TURNO »"
+
+[node name="VictoryPanel" type="ColorRect" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0117647, 0.0470588, 0.0784314, 0.6)
+
+[node name="Center" type="CenterContainer" parent="HUD/VictoryPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="HUD/VictoryPanel/Center"]
+custom_minimum_size = Vector2(380, 240)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Card")
+
+[node name="Margin" type="MarginContainer" parent="HUD/VictoryPanel/Center/Card"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="HUD/VictoryPanel/Center/Card/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Title" type="Label" parent="HUD/VictoryPanel/Center/Card/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.941176, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "¡MISIÓN CUMPLIDA!"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="HUD/VictoryPanel/Center/Card/Margin/VBox"]
+layout_mode = 2
+
+[node name="MVPBox" type="VBoxContainer" parent="HUD/VictoryPanel/Center/Card/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelMVP" type="Label" parent="HUD/VictoryPanel/Center/Card/Margin/VBox/MVPBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.65, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "JUGADOR MVP: SNIPER (KEIRA)"
+horizontal_alignment = 1
+
+[node name="LabelStats" type="Label" parent="HUD/VictoryPanel/Center/Card/Margin/VBox/MVPBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 0.8)
+theme_override_font_sizes/font_size = 9
+text = "BAJAS: 2      DAÑO REGISTRADO: 90 HP"
+horizontal_alignment = 1
+
+[node name="Separator2" type="HSeparator" parent="HUD/VictoryPanel/Center/Card/Margin/VBox"]
+layout_mode = 2
+
+[node name="HBoxButtons" type="HBoxContainer" parent="HUD/VictoryPanel/Center/Card/Margin/VBox/HBoxButtons"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnMainMenu" type="Button" parent="HUD/VictoryPanel/Center/Card/Margin/VBox/HBoxButtons"]
+custom_minimum_size = Vector2(130, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ActionButton_Hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ActionButton_Pressed")
+text = "MENÚ PRINCIPAL"
+
+[node name="BtnContinue" type="Button" parent="HUD/VictoryPanel/Center/Card/Margin/VBox/HBoxButtons"]
+custom_minimum_size = Vector2(130, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.941176, 1, 1)
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_ActionButton")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ActionButton_Hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ActionButton_Pressed")
+text = "CONTINUAR"
