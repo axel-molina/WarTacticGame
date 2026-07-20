@@ -21,6 +21,7 @@ extends Control
 @onready var check_fullscreen: CheckBox = $OptionsPanel/Margin/VBox/CheckFullscreen
 @onready var opt_resolution: OptionButton = $OptionsPanel/Margin/VBox/HBoxRes/OptResolution
 @onready var check_right_drag: CheckBox = $OptionsPanel/Margin/VBox/CheckRightDrag
+@onready var check_auto_center: CheckBox = $OptionsPanel/Margin/VBox/CheckAutoCenter
 @onready var btn_save_options: Button = $OptionsPanel/Margin/VBox/BtnSaveOptions
 
 # Bottom buttons
@@ -102,6 +103,7 @@ func _on_options_pressed() -> void:
 	slider_sfx.value = SettingsManager.sfx_volume
 	check_fullscreen.button_pressed = SettingsManager.fullscreen
 	check_right_drag.button_pressed = SettingsManager.drag_with_right_click
+	check_auto_center.button_pressed = SettingsManager.auto_center_camera
 	
 	# Asegurar que el selector de resolucion marque la resolucion cargada en disco
 	if SettingsManager.resolution.x == 1280 and SettingsManager.resolution.y == 720:
@@ -119,6 +121,7 @@ func _on_save_options() -> void:
 	# Read UI values into SettingsManager
 	SettingsManager.fullscreen = check_fullscreen.button_pressed
 	SettingsManager.drag_with_right_click = check_right_drag.button_pressed
+	SettingsManager.auto_center_camera = check_auto_center.button_pressed
 	
 	# Guardar resolucion solo si el selector tiene un indice valido asignado
 	if opt_resolution.selected == 0:

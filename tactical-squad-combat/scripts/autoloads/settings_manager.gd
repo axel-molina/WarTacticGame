@@ -8,6 +8,7 @@ var sfx_volume: float = 0.8    # 0.0 to 1.0
 var fullscreen: bool = false
 var resolution: Vector2i = Vector2i(1280, 720)
 var drag_with_right_click: bool = true
+var auto_center_camera: bool = false
 
 func _ready() -> void:
 	load_settings()
@@ -20,6 +21,7 @@ func save_settings() -> void:
 	config.set_value("video", "fullscreen", fullscreen)
 	config.set_value("video", "resolution", resolution)
 	config.set_value("controls", "drag_with_right_click", drag_with_right_click)
+	config.set_value("controls", "auto_center_camera", auto_center_camera)
 	config.save(SAVE_PATH)
 
 func load_settings() -> void:
@@ -30,6 +32,7 @@ func load_settings() -> void:
 		fullscreen = config.get_value("video", "fullscreen", fullscreen)
 		resolution = config.get_value("video", "resolution", resolution)
 		drag_with_right_click = config.get_value("controls", "drag_with_right_click", drag_with_right_click)
+		auto_center_camera = config.get_value("controls", "auto_center_camera", auto_center_camera)
 
 func apply_video_settings() -> void:
 	var current_mode = DisplayServer.window_get_mode()

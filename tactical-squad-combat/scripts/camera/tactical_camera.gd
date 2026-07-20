@@ -116,5 +116,5 @@ func update_camera_transform(_delta: float) -> void:
 	look_at(current_focus)
 
 func _on_soldier_selected(soldier) -> void:
-	if soldier:
+	if soldier and SettingsManager.auto_center_camera:
 		target_focus = soldier.global_position

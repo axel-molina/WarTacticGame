@@ -36,6 +36,12 @@ class_name HUDController
 @onready var btn_main_menu: Button = $VictoryPanel/Center/Card/Margin/VBox/HBoxButtons/BtnMainMenu
 @onready var btn_continue: Button = $VictoryPanel/Center/Card/Margin/VBox/HBoxButtons/BtnContinue
 
+# Referencias a ConfirmTurnPanel
+@onready var confirm_turn_panel: ColorRect = $ConfirmTurnPanel
+@onready var label_confirm_desc: Label = $ConfirmTurnPanel/Center/Card/Margin/VBox/LabelDesc
+@onready var btn_confirm_end_turn: Button = $ConfirmTurnPanel/Center/Card/Margin/VBox/HBoxButtons/BtnConfirmEndTurn
+@onready var btn_cancel_end_turn: Button = $ConfirmTurnPanel/Center/Card/Margin/VBox/HBoxButtons/BtnCancelEndTurn
+
 var selected_soldier: SoldierController = null
 
 # Local stats tracking
@@ -73,8 +79,23 @@ func _ready() -> void:
 		victory_panel.visible = false
 	)
 	
+	# Confirm turn buttons
+	btn_confirm_end_turn.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		confirm_turn_panel.visible = false
+		GameManager.end_turn()
+	)
+	
+	btn_cancel_end_turn.pressed.connect(func():
+		AudioManager.play_sfx("ui_click_menu")
+		confirm_turn_panel.visible = false
+	)
+	
 	# Connect hover sounds
-	var action_buttons = [btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn, btn_main_menu, btn_continue]
+	var action_buttons = [
+		btn_move, btn_shoot, btn_reload, btn_heal, btn_grenade, btn_end_turn, btn_turn, 
+		btn_main_menu, btn_continue, btn_confirm_end_turn, btn_cancel_end_turn
+	]
 	for btn in action_buttons:
 		if btn:
 			btn.mouse_entered.connect(func():
@@ -378,4 +399,19 @@ func _on_btn_end_turn_pressed() -> void:
 		EventBus.combat_log_added.emit("No hay otros soldados aliados disponibles.", "info")
 
 func _on_btn_turn_pressed() -> void:
-	GameManager.end_turn()
+	# Filtrar los soldados aliados vivos con AP > 0
+	var allies_with_ap = GameManager.all_soldiers.filter(
+		func(s): return is_instance_valid(s) and not s.is_enemy and s.stats.hp > 0 and s.stats.ap > 0
+	)
+	
+	if allies_with_ap.size() == 0:
+		# Si nadie tiene AP, finalizar turno directamente
+		GameManager.end_turn()
+	else:
+		# Si hay AP disponibles, abrir el modal de advertencia
+		if allies_with_ap.size() == 1:
+			label_confirm_desc.text = "El soldado %s todavía tiene puntos de habilidad disponibles para utilizar." % allies_with_ap[0].soldier_name.to_upper()
+		else:
+			label_confirm_desc.text = "Algunos soldados todavía pueden realizar acciones en este turno."
+			
+		confirm_turn_panel.visible = true

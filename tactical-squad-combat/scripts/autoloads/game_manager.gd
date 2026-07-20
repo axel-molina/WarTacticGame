@@ -167,9 +167,9 @@ func execute_heal(medic: SoldierController, target: SoldierController) -> void:
 	EventBus.soldier_selected.emit(medic)
 
 func execute_grenade(thrower: SoldierController, target_pos: Vector2i) -> void:
-	if thrower.stats.ap <= 0:
+	if thrower.stats.ap < 2:
 		return
-	thrower.stats.ap -= 1
+	thrower.stats.ap -= 2
 	
 	var grid_manager = get_tree().current_scene.get_node("GridManager") as GridManager
 	var target_world_pos = grid_manager.get_world_position(target_pos)

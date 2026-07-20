@@ -692,6 +692,12 @@ theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
 button_pressed = true
 text = "Arrastrar Cámara con Click Derecho"
 
+[node name="CheckAutoCenter" type="CheckBox" parent="OptionsPanel/Margin/VBox" unique_id=1741658518]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.8, 1)
+button_pressed = false
+text = "Centrar la cámara automáticamente en el jugador"
+
 [node name="BtnSaveOptions" type="Button" parent="OptionsPanel/Margin/VBox" unique_id=192291000]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
