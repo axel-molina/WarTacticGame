@@ -277,6 +277,14 @@ func update_hud_display() -> void:
 		var should_glow_turn = (not any_soldier_has_ap)
 		_set_button_glow(btn_turn, should_glow_turn, Color(0.0, 0.94, 1.0))
 		
+		# --- ACTUALIZAR OPACIDAD DE ICONOS EN BOTONES DESHABILITADOS ---
+		_update_button_icon_opacity(btn_move)
+		_update_button_icon_opacity(btn_shoot)
+		_update_button_icon_opacity(btn_reload)
+		_update_button_icon_opacity(btn_heal)
+		_update_button_icon_opacity(btn_grenade)
+		_update_button_icon_opacity(btn_end_turn)
+		
 	else:
 		panel_info.visible = false
 		panel_actions.visible = false # Ocultar completamente el panel de acciones si no hay soldado seleccionado
@@ -288,9 +296,21 @@ func update_hud_display() -> void:
 		
 	if btn_turn:
 		btn_turn.disabled = not is_player_turn
+		_update_button_icon_opacity(btn_turn)
 
 # Almacena los Tweens activos de brillo para evitar colisiones
 var _glow_tweens: Dictionary = {}
+
+func _update_button_icon_opacity(btn: Button) -> void:
+	if not btn: return
+	var icon_rect = btn.get_node_or_null("VBox/Icon") as TextureRect
+	if icon_rect:
+		if btn.disabled:
+			# Opacar a gris oscuro/translúcido
+			icon_rect.modulate = Color(0.3, 0.35, 0.4, 0.5)
+		else:
+			# Restaurar color completo
+			icon_rect.modulate = Color.WHITE
 
 func _set_button_glow(btn: Button, should_glow: bool, glow_color: Color) -> void:
 	if not btn: return
