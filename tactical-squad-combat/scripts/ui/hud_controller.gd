@@ -70,8 +70,7 @@ func _ready() -> void:
 	
 	# Victory buttons
 	btn_main_menu.pressed.connect(func():
-		AudioManager.play_sfx("ui_click_menu")
-		get_tree().change_scene_to_file("res://scenes/menu/menu_scene.tscn")
+		SceneTransition.change_scene("res://scenes/menu/menu_scene.tscn")
 	)
 	
 	btn_continue.pressed.connect(func():

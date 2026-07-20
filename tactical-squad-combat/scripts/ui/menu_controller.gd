@@ -137,8 +137,8 @@ func _on_save_options() -> void:
 
 func _on_skirmish() -> void:
 	# Quick battle with default settings
-	get_tree().change_scene_to_file("res://scenes/main/battle_scene.tscn")
+	SceneTransition.change_scene("res://scenes/main/battle_scene.tscn")
 
 func _on_start_operation() -> void:
 	# Start campaign battle
-	get_tree().change_scene_to_file("res://scenes/main/battle_scene.tscn")
+	SceneTransition.change_scene("res://scenes/main/battle_scene.tscn")
