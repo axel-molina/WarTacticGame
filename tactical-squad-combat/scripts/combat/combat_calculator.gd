@@ -114,6 +114,23 @@ static func calculate_shot(shooter: SoldierController, defender: SoldierControll
 		var hp_ratio = float(shooter.stats.hp) / float(shooter.stats.max_hp)
 		wound_penalty = int(round(-25.0 * (1.0 - hp_ratio)))
 		
+	# 6. Critical Hit Chance Calculation
+	var base_crit = 5
+	if c_id == "snipers":
+		base_crit = 30
+	elif c_id == "assault":
+		base_crit = 15
+	elif c_id == "enemy_heavy":
+		base_crit = 10
+		
+	var final_crit_chance = base_crit
+	if cover_check.active:
+		# Las coberturas bloquean los golpes críticos por completo
+		final_crit_chance = 0
+	else:
+		# Flanqueado o al descubierto otorga +40% de probabilidad crítica
+		final_crit_chance += 40
+		
 	# Calculate final values
 	var final_acc = clamp(base_acc + range_mod + cover_acc_mod + elev_mod + wound_penalty, 10, 95)
 	var final_dmg = round(base_dmg * (1.0 - cover_dmg_reduction))
@@ -130,5 +147,6 @@ static func calculate_shot(shooter: SoldierController, defender: SoldierControll
 		"final_damage": int(final_dmg),
 		"is_cover_active": cover_check.active,
 		"cover_type": cover_check.type,
-		"distance": dist
+		"distance": dist,
+		"final_crit_chance": final_crit_chance
 	}

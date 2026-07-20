@@ -121,9 +121,21 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 			
 		if is_hit:
 			var dmg = breakdown.final_damage
-			EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto)%s. Daño: %d" % [
-				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, wound_info, dmg
-			], "player_attack" if not shooter.is_enemy else "enemy_attack")
+			var is_crit = false
+			var crit_roll = randf_range(0.0, 100.0)
+			
+			if crit_roll <= breakdown.final_crit_chance:
+				is_crit = true
+				dmg = int(round(dmg * 1.5))
+				
+			if is_crit:
+				EventBus.combat_log_added.emit("💥 ¡IMPACTO CRÍTICO! %s dispara a %s (%d%% de acierto)%s. Daño: %d (1.5x)" % [
+					shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, wound_info, dmg
+				], "player_attack" if not shooter.is_enemy else "enemy_attack")
+			else:
+				EventBus.combat_log_added.emit("🎯 ¡Impacto! %s dispara a %s (%d%% de acierto)%s. Daño: %d" % [
+					shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy, wound_info, dmg
+				], "player_attack" if not shooter.is_enemy else "enemy_attack")
 			
 			# Registrar estadistica para MVP
 			shooter.damage_dealt_count += dmg
@@ -135,7 +147,7 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 			if will_die:
 				shooter.kills_count += 1
 				
-			defender.take_damage(dmg)
+			defender.take_damage(dmg, is_crit)
 			check_battle_status()
 		else:
 			EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto)%s pero erra el tiro." % [

@@ -43,7 +43,7 @@ func _input_event(_camera: Camera3D, event: InputEvent, _event_position: Vector3
 		get_viewport().set_input_as_handled()
 		EventBus.soldier_selected.emit(self)
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, is_crit: bool = false) -> void:
 	if not stats:
 		return
 	var shield_damage = min(stats.shield, amount)
@@ -66,8 +66,11 @@ func take_damage(amount: int) -> void:
 			)
 			
 	# 2. Spawnear Texto Flotante de Daño
-	var txt_color = Color(1.0, 0.1, 0.1) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
-	show_floating_text("-%d" % amount, txt_color)
+	if is_crit:
+		show_floating_text("-%d CRIT" % amount, Color(1.0, 0.8, 0.0))
+	else:
+		var txt_color = Color(1.0, 0.1, 0.1) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
+		show_floating_text("-%d" % amount, txt_color)
 	
 	# Update label visually if it exists
 	if label_name:
