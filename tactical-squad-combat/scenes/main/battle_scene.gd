@@ -17,6 +17,9 @@ func _ready() -> void:
 	EventBus.soldier_selected.connect(_on_soldier_selected)
 	EventBus.cell_clicked.connect(_on_cell_clicked)
 	
+	# Reproducir música de batalla en bucle
+	AudioManager.play_music("battle_music")
+	
 	# Wait for grid to be generated
 	await get_tree().process_frame
 	spawn_squads()
