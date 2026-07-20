@@ -265,6 +265,9 @@ func update_hud_display() -> void:
 		_set_button_glow(btn_reload, false, Color.WHITE)
 		_set_button_glow(btn_end_turn, false, Color.WHITE)
 		_set_button_glow(btn_turn, false, Color.WHITE)
+		
+	if btn_turn:
+		btn_turn.disabled = not is_player_turn
 
 # Almacena los Tweens activos de brillo para evitar colisiones
 var _glow_tweens: Dictionary = {}
@@ -293,9 +296,6 @@ func _set_button_glow(btn: Button, should_glow: bool, glow_color: Color) -> void
 				tween.kill()
 			_glow_tweens.erase(btn)
 		btn.self_modulate = Color.WHITE
-			
-	if btn_turn:
-		btn_turn.disabled = not is_player_turn
 
 # --- BUTTON ACTIONS ---
 
