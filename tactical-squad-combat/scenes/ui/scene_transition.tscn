@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6v2n9ohbq02b"]
+[gd_scene format=3 uid="uid://c6v2oaohbq02b"]
 
 [ext_resource type="Shader" path="res://shaders/cinematic_transition.gdshader" id="1_shader"]
 [ext_resource type="Script" path="res://scripts/ui/scene_transition.gd" id="2_script"]
 
-[[sub_resource type="ShaderMaterial" id="ShaderMaterial_Transition"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_Transition"]
 shader = ExtResource("1_shader")
 shader_parameter/progress = 0.0
 shader_parameter/color_glow = Color(0, 0.941176, 1, 1)
