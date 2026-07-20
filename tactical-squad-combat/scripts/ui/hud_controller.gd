@@ -4,11 +4,11 @@ class_name HUDController
 @onready var panel_info: PanelContainer = $InfoPanel
 @onready var label_soldier: Label = $InfoPanel/Margin/HBox/VBox/HBoxHeader/LabelSoldier
 @onready var label_class: Label = $InfoPanel/Margin/HBox/VBox/HBoxHeader/LabelClass
-@onready var label_hp: Label = $InfoPanel/Margin/HBox/VBox/LabelHP
+@onready var label_hp: Label = $InfoPanel/Margin/HBox/VBox/HBoxHP/LabelHP
 @onready var hp_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/HPBar
-@onready var label_shield: Label = $InfoPanel/Margin/HBox/VBox/LabelShield
+@onready var label_shield: Label = $InfoPanel/Margin/HBox/VBox/HBoxShield/LabelShield
 @onready var shield_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/ShieldBar
-@onready var label_stats: Label = $InfoPanel/Margin/HBox/VBox/LabelStats
+@onready var label_stats: Label = $InfoPanel/Margin/HBox/VBox/HBoxStats/LabelStats
 
 @onready var panel_actions: PanelContainer = $ActionPanel
 @onready var btn_move: Button = $ActionPanel/Margin/HBox/BtnMove
@@ -150,11 +150,11 @@ func update_hud_display() -> void:
 		label_soldier.text = selected_soldier.soldier_name.to_upper()
 		label_class.text = "%s          NVL 1" % selected_soldier.class_data.class_name_label.to_upper()
 		
-		label_hp.text = "❤️ VIDA: %d/%d" % [selected_soldier.stats.hp, selected_soldier.stats.max_hp]
+		label_hp.text = "VIDA: %d/%d" % [selected_soldier.stats.hp, selected_soldier.stats.max_hp]
 		hp_bar.max_value = selected_soldier.stats.max_hp
 		hp_bar.value = selected_soldier.stats.hp
 		
-		label_shield.text = "🛡️ ESCUDO: %d/%d" % [selected_soldier.stats.shield, selected_soldier.stats.max_shield]
+		label_shield.text = "ESCUDO: %d/%d" % [selected_soldier.stats.shield, selected_soldier.stats.max_shield]
 		shield_bar.max_value = selected_soldier.stats.max_shield
 		shield_bar.value = selected_soldier.stats.shield
 		
