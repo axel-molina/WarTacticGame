@@ -277,13 +277,13 @@ func update_hud_display() -> void:
 		var should_glow_turn = (not any_soldier_has_ap)
 		_set_button_glow(btn_turn, should_glow_turn, Color(0.0, 0.94, 1.0))
 		
-		# --- ACTUALIZAR OPACIDAD DE ICONOS EN BOTONES DESHABILITADOS ---
-		_update_button_icon_opacity(btn_move)
-		_update_button_icon_opacity(btn_shoot)
-		_update_button_icon_opacity(btn_reload)
-		_update_button_icon_opacity(btn_heal)
-		_update_button_icon_opacity(btn_grenade)
-		_update_button_icon_opacity(btn_end_turn)
+		# --- ACTUALIZAR OPACIDAD Y COLOR DE BOTONES DESHABILITADOS ---
+		_update_button_visual_states(btn_move)
+		_update_button_visual_states(btn_shoot)
+		_update_button_visual_states(btn_reload)
+		_update_button_visual_states(btn_heal)
+		_update_button_visual_states(btn_grenade)
+		_update_button_visual_states(btn_end_turn)
 		
 	else:
 		panel_info.visible = false
@@ -296,21 +296,36 @@ func update_hud_display() -> void:
 		
 	if btn_turn:
 		btn_turn.disabled = not is_player_turn
-		_update_button_icon_opacity(btn_turn)
+		_update_button_visual_states(btn_turn)
 
 # Almacena los Tweens activos de brillo para evitar colisiones
 var _glow_tweens: Dictionary = {}
 
-func _update_button_icon_opacity(btn: Button) -> void:
+func _update_button_visual_states(btn: Button) -> void:
 	if not btn: return
+	
 	var icon_rect = btn.get_node_or_null("VBox/Icon") as TextureRect
-	if icon_rect:
-		if btn.disabled:
-			# Opacar a gris oscuro/translúcido
+	var name_label = btn.get_node_or_null("VBox/Label") as Label
+	var cost_label = btn.get_node_or_null("VBox/Cost") as Label
+	
+	if btn.disabled:
+		# Opacar icono a gris oscuro/translúcido
+		if icon_rect:
 			icon_rect.modulate = Color(0.3, 0.35, 0.4, 0.5)
-		else:
-			# Restaurar color completo
+		# Grisear textos
+		if name_label:
+			name_label.add_theme_color_override("font_color", Color(0.3, 0.35, 0.4, 0.6))
+		if cost_label:
+			cost_label.add_theme_color_override("font_color", Color(0.3, 0.35, 0.4, 0.4))
+	else:
+		# Restaurar color de icono
+		if icon_rect:
 			icon_rect.modulate = Color.WHITE
+		# Restaurar colores por defecto de textos
+		if name_label:
+			name_label.remove_theme_color_override("font_color")
+		if cost_label:
+			cost_label.remove_theme_color_override("font_color")
 
 func _set_button_glow(btn: Button, should_glow: bool, glow_color: Color) -> void:
 	if not btn: return
