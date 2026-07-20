@@ -137,6 +137,7 @@ func execute_shoot(shooter: SoldierController, defender: SoldierController) -> v
 			EventBus.combat_log_added.emit("❌ ¡Fallo! %s dispara a %s (%d%% de acierto) pero erra el tiro." % [
 				shooter.soldier_name, defender.soldier_name, breakdown.final_accuracy
 			], "info")
+			defender.show_floating_text("¡FALLÓ!", Color(0.7, 0.7, 0.7))
 	)
 		
 	EventBus.soldier_selected.emit(shooter)
@@ -216,20 +217,25 @@ func execute_grenade(thrower: SoldierController, target_pos: Vector2i) -> void:
 	
 	# Splash damage in 1-cell radius (Manhattan dist <= 1)
 	var targets_to_damage = []
+	var distances = {}
 	for soldier in all_soldiers:
 		if is_instance_valid(soldier) and soldier.stats.hp > 0:
 			var dist = CombatCalculator.get_distance(soldier.grid_position, target_pos)
 			if dist <= 1:
 				targets_to_damage.append(soldier)
+				distances[soldier] = dist
 				
 	for target in targets_to_damage:
+		var dist = distances[target]
+		var dmg = 50 if dist == 0 else 25
+		
 		# Registrar estadisticas de MVP
-		thrower.damage_dealt_count += 35
-		var will_die = (target.stats.hp - (35 - min(target.stats.shield, 35))) <= 0
+		thrower.damage_dealt_count += dmg
+		var will_die = (target.stats.hp - (dmg - min(target.stats.shield, dmg))) <= 0
 		if will_die:
 			thrower.kills_count += 1
 			
-		target.take_damage(35)
+		target.take_damage(dmg)
 		
 	# Destroy cover at target and adjacent cells
 	for dx in range(-1, 2):

@@ -66,23 +66,8 @@ func take_damage(amount: int) -> void:
 			)
 			
 	# 2. Spawnear Texto Flotante de Daño
-	var damage_label = Label3D.new()
-	damage_label.text = "-%d" % amount
-	damage_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	damage_label.modulate = Color(1.0, 0.1, 0.1) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
-	damage_label.font_size = 64 # Mas grande para que se note claramente
-	damage_label.outline_size = 16
-	damage_label.no_depth_test = true # Se renderiza al frente de los objetos y paredes para que sea super visible
-	
-	# Añadir directamente a la escena principal para que no herede la rotacion local del soldado
-	get_parent().add_child(damage_label)
-	damage_label.global_position = global_position + Vector3(0, 2.2, 0)
-	
-	var tween = create_tween()
-	# Paneo hacia arriba
-	tween.tween_property(damage_label, "global_position:y", global_position.y + 3.5, 0.8)
-	tween.parallel().tween_property(damage_label, "modulate:a", 0.0, 0.8)
-	tween.tween_callback(damage_label.queue_free)
+	var txt_color = Color(1.0, 0.1, 0.1) if hp_damage > 0 else Color(0.2, 0.7, 1.0)
+	show_floating_text("-%d" % amount, txt_color)
 	
 	# Update label visually if it exists
 	if label_name:
@@ -90,6 +75,28 @@ func take_damage(amount: int) -> void:
 		
 	if stats.hp <= 0:
 		die()
+
+func show_floating_text(text_val: String, text_color: Color) -> void:
+	var floating_label = Label3D.new()
+	floating_label.text = text_val
+	floating_label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	floating_label.modulate = text_color
+	floating_label.font_size = 64 # Grande y legible
+	floating_label.outline_size = 16
+	floating_label.no_depth_test = true # Que se renderice al frente de todo
+	
+	var parent_node = get_parent()
+	if not parent_node:
+		parent_node = get_tree().current_scene
+	parent_node.add_child(floating_label)
+	floating_label.global_position = global_position + Vector3(0, 2.2, 0)
+	
+	# Creamos el tween enlazado al propio label3d, garantizando su ciclo de vida independiente del soldado
+	var tween = floating_label.create_tween()
+	var target_y = global_position.y + 3.5
+	tween.tween_property(floating_label, "global_position:y", target_y, 0.8)
+	tween.parallel().tween_property(floating_label, "modulate:a", 0.0, 0.8)
+	tween.tween_callback(floating_label.queue_free)
 
 func die() -> void:
 	EventBus.combat_log_added.emit("💀 %s ha sido incapacitado." % [soldier_name], "death")

@@ -230,9 +230,69 @@ func update_hud_display() -> void:
 		
 		# La granada cuesta 2 AP, por lo que requiere al menos 2 AP
 		btn_grenade.disabled = (selected_soldier.stats.ap < 2)
+		
+		# --- GESTIÓN DE BRILLOS TÁCTICOS (GLOW) ---
+		# 1. Brillo de Recarga: si el soldado tiene 0 balas Y AP disponibles
+		var should_glow_reload = (selected_soldier.stats.ammo <= 0 and selected_soldier.stats.ap > 0)
+		_set_button_glow(btn_reload, should_glow_reload, Color(1.0, 0.5, 0.1))
+		
+		# Obtener soldados aliados del jugador
+		var player_soldiers = GameManager.all_soldiers.filter(func(s): return is_instance_valid(s) and not s.is_enemy and s.stats.hp > 0)
+		
+		# 2. Brillo de Siguiente (Pasar): si el soldado actual tiene 0 AP, pero hay otros soldados aliados con AP > 0
+		var other_allies_have_ap = false
+		for ally in player_soldiers:
+			if ally != selected_soldier and ally.stats.ap > 0:
+				other_allies_have_ap = true
+				break
+		var should_glow_next = (selected_soldier.stats.ap <= 0 and other_allies_have_ap)
+		_set_button_glow(btn_end_turn, should_glow_next, Color(1.0, 0.5, 0.1))
+		
+		# 3. Brillo de Finalizar Turno: si NINGÚN soldado propio tiene AP disponibles
+		var any_soldier_has_ap = false
+		for ally in player_soldiers:
+			if ally.stats.ap > 0:
+				any_soldier_has_ap = true
+				break
+		var should_glow_turn = (not any_soldier_has_ap)
+		_set_button_glow(btn_turn, should_glow_turn, Color(0.0, 0.94, 1.0))
+		
 	else:
 		panel_info.visible = false
 		panel_actions.visible = false # Ocultar completamente el panel de acciones si no hay soldado seleccionado
+		
+		# Detener brillos si no hay seleccion
+		_set_button_glow(btn_reload, false, Color.WHITE)
+		_set_button_glow(btn_end_turn, false, Color.WHITE)
+		_set_button_glow(btn_turn, false, Color.WHITE)
+
+# Almacena los Tweens activos de brillo para evitar colisiones
+var _glow_tweens: Dictionary = {}
+
+func _set_button_glow(btn: Button, should_glow: bool, glow_color: Color) -> void:
+	if not btn: return
+	
+	if should_glow:
+		# Si ya está brillando, no reiniciar el Tween
+		if _glow_tweens.has(btn):
+			return
+			
+		# Configurar tinte inicial del botón
+		btn.self_modulate = glow_color
+		
+		# Crear un Tween en bucle infinito que haga parpadear la opacidad del color del botón
+		var tween = btn.create_tween().set_loops()
+		tween.tween_property(btn, "self_modulate:a", 0.4, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_property(btn, "self_modulate:a", 1.0, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		_glow_tweens[btn] = tween
+	else:
+		# Detener e interrumpir el parpadeo si existía
+		if _glow_tweens.has(btn):
+			var tween = _glow_tweens[btn]
+			if tween:
+				tween.kill()
+			_glow_tweens.erase(btn)
+		btn.self_modulate = Color.WHITE
 			
 	if btn_turn:
 		btn_turn.disabled = not is_player_turn
