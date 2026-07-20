@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TacticalSquadCombat"
 run/main_scene="res://scenes/menu/menu_scene.tscn"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.7", "Forward+")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -42,4 +42,5 @@ enabled=PackedStringArray("res://addons/godot_ai/plugin.cfg")
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="forward_plus"
 renderer/rendering_method.mobile="forward_plus"

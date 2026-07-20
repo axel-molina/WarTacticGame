@@ -32,13 +32,26 @@ func load_settings() -> void:
 		drag_with_right_click = config.get_value("controls", "drag_with_right_click", drag_with_right_click)
 
 func apply_video_settings() -> void:
+	var current_mode = DisplayServer.window_get_mode()
+	
 	if fullscreen:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		if current_mode != DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN and current_mode != DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		DisplayServer.window_set_size(resolution)
-		# Center the window on the current screen (float division to avoid INTEGER_DIVISION warning)
-		var screen = DisplayServer.window_get_current_screen()
-		var screen_size = DisplayServer.screen_get_size(screen)
-		var target_pos = Vector2(screen_size - resolution) / 2.0
-		DisplayServer.window_set_position(Vector2i(target_pos))
+		if current_mode != DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_size(resolution)
+			# Center the window on the current screen (float division to avoid INTEGER_DIVISION warning)
+			var screen = DisplayServer.window_get_current_screen()
+			var screen_size = DisplayServer.screen_get_size(screen)
+			var target_pos = Vector2(screen_size - resolution) / 2.0
+			DisplayServer.window_set_position(Vector2i(target_pos))
+		else:
+			# Si ya es modo ventana, solo cambiar tamaño si la resolución difiere
+			var current_size = DisplayServer.window_get_size()
+			if current_size != resolution:
+				DisplayServer.window_set_size(resolution)
+				var screen = DisplayServer.window_get_current_screen()
+				var screen_size = DisplayServer.screen_get_size(screen)
+				var target_pos = Vector2(screen_size - resolution) / 2.0
+				DisplayServer.window_set_position(Vector2i(target_pos))
