@@ -1,9 +1,16 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene format=3 uid="uid://ckb3iatg6ohbq"]
 
-[ext_resource type="Script" path="res://scenes/main/battle_scene.gd" id="1_script"]
-[ext_resource type="Script" path="res://scripts/grid/grid_manager.gd" id="2_grid"]
-[ext_resource type="Script" path="res://scripts/camera/tactical_camera.gd" id="3_camera"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4_hud"]
+[ext_resource type="Script" uid="uid://d1hil7nj2l25n" path="res://scenes/main/battle_scene.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bh13yur1l48lj" path="res://scripts/grid/grid_manager.gd" id="2_grid"]
+[ext_resource type="Script" uid="uid://cj3nj37tw7l5l" path="res://scripts/camera/tactical_camera.gd" id="3_camera"]
+[ext_resource type="PackedScene" uid="uid://b5jecn0vo6668" path="res://scenes/ui/hud.tscn" id="4_hud"]
+
+[sub_resource type="Gradient" id="Gradient_TealOrange"]
+offsets = PackedFloat32Array(0, 0.35, 0.72, 1)
+colors = PackedColorArray(0.0156863, 0.0784314, 0.117647, 1, 0.0784314, 0.180392, 0.235294, 1, 0.627451, 0.470588, 0.313725, 1, 1, 0.784314, 0.54902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_Cinematic"]
+gradient = SubResource("Gradient_TealOrange")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_top_color = Color(0.1, 0.15, 0.25, 1)
@@ -14,45 +21,39 @@ ground_horizon_color = Color(0.1, 0.1, 0.15, 1)
 [sub_resource type="Sky" id="Sky_1"]
 sky_material = SubResource("ProceduralSkyMaterial_1")
 
-[sub_resource type="Gradient" id="Gradient_TealOrange"]
-offsets = PackedFloat32Array(0, 0.35, 0.72, 1)
-colors = PackedColorArray(0.0156863, 0.0784314, 0.117647, 1, 0.0784314, 0.180392, 0.235294, 1, 0.627451, 0.470588, 0.313725, 1, 1, 0.784314, 0.54902, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_Cinematic"]
-gradient = SubResource("Gradient_TealOrange")
-
 [sub_resource type="Environment" id="Environment_1"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.15636167, 0.28246486, 0.3507792, 1)
+background_energy_multiplier = 0.97
 sky = SubResource("Sky_1")
 tonemap_mode = 3
 glow_enabled = true
 glow_intensity = 0.6
 glow_strength = 1.1
 glow_bloom = 0.2
-glow_blend_mode = 1
 adjustment_enabled = true
-adjustment_brightness = 0.95
+adjustment_brightness = 0.94
 adjustment_contrast = 1.15
 adjustment_saturation = 0.92
 adjustment_color_correction = SubResource("GradientTexture1D_Cinematic")
 
-[node name="BattleScene" type="Node3D"]
+[node name="BattleScene" type="Node3D" unique_id=91042579]
 script = ExtResource("1_script")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1209557194]
 environment = SubResource("Environment_1")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2013397424]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 10, 0)
 light_color = Color(0.8, 0.9, 0.95, 1)
 light_energy = 1.2
 shadow_enabled = true
 
-[node name="GridManager" type="Node3D" parent="."]
+[node name="GridManager" type="Node3D" parent="." unique_id=171821029]
 script = ExtResource("2_grid")
 
-[node name="TacticalCamera" type="Camera3D" parent="."]
+[node name="TacticalCamera" type="Camera3D" parent="." unique_id=509317388]
 current = true
 script = ExtResource("3_camera")
 
-[node name="HUD" parent="." instance=ExtResource("4_hud")]
+[node name="HUD" parent="." unique_id=2100372759 instance=ExtResource("4_hud")]
