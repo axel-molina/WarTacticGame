@@ -8,7 +8,8 @@ class_name HUDController
 @onready var hp_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/HPBar
 @onready var label_shield: Label = $InfoPanel/Margin/HBox/VBox/HBoxShield/LabelShield
 @onready var shield_bar: ProgressBar = $InfoPanel/Margin/HBox/VBox/ShieldBar
-@onready var label_stats: Label = $InfoPanel/Margin/HBox/VBox/HBoxStats/LabelStats
+@onready var label_ammo: Label = $InfoPanel/Margin/HBox/VBox/HBoxStats/LabelAmmo
+@onready var ap_icons_container: HBoxContainer = $InfoPanel/Margin/HBox/VBox/HBoxStats/ApIconsContainer
 
 @onready var panel_actions: PanelContainer = $ActionPanel
 @onready var btn_move: Button = $ActionPanel/Margin/HBox/BtnMove
@@ -158,12 +159,26 @@ func update_hud_display() -> void:
 		shield_bar.max_value = selected_soldier.stats.max_shield
 		shield_bar.value = selected_soldier.stats.shield
 		
-		var ap_str = ""
-		for i in range(selected_soldier.stats.max_ap):
-			ap_str += "🔶 " if i < selected_soldier.stats.ap else "◇ "
+		# Limpiar iconos anteriores de AP
+		for child in ap_icons_container.get_children():
+			child.queue_free()
 			
-		label_stats.text = "AP: %s             MUNICIÓN: %d/%d" % [
-			ap_str, selected_soldier.stats.ammo, selected_soldier.stats.max_ammo
+		# Cargar textura de ap_icon dinamicamente
+		var ap_tex = preload("res://images/battleicons/ap_icon.png")
+		for i in range(selected_soldier.stats.max_ap):
+			var ap_rect = TextureRect.new()
+			ap_rect.custom_minimum_size = Vector2(10, 10)
+			ap_rect.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+			ap_rect.texture = ap_tex
+			ap_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			ap_rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			# AP gastados se verán translúcidos/opacos
+			if i >= selected_soldier.stats.ap:
+				ap_rect.modulate = Color(1.0, 1.0, 1.0, 0.2)
+			ap_icons_container.add_child(ap_rect)
+			
+		label_ammo.text = "MUNICIÓN: %d/%d" % [
+			selected_soldier.stats.ammo, selected_soldier.stats.max_ammo
 		]
 		
 		# Show/Hide class actions
